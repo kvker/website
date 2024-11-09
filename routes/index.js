@@ -17,4 +17,12 @@ router.get('/about', function (req, res, next) {
   res.render('about', metaData)
 })
 
+router.get('/projects', function (req, res, next) {
+  res.render('projects', metaData)
+})
+
+router.get('/uses', function (req, res, next) {
+  res.render('uses', metaData)
+})
+
 module.exports = router
