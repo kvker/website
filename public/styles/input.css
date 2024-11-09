@@ -12,3 +12,7 @@ body {
     padding: 16px;
   }
 }
+
+[popover]::backdrop {
+  background-color: #0002;
+}
