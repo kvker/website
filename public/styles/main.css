@@ -622,6 +622,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.ml-40 {
+  margin-left: 10rem;
+}
+
 .block {
   display: block;
 }
@@ -871,6 +875,14 @@ video {
 
 .pt-10 {
   padding-top: 2.5rem;
+}
+
+.pl-40 {
+  padding-left: 10rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .text-2xl {
