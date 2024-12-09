@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "cross-env PORT=13000 nodemon ./bin/www",
     "tailwindcss": "tailwindcss -i ./public/styles/input.css -o ./public/styles/main.css --watch",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "vitepress": "^1.5.0"
   }
 }
