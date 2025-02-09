@@ -1,110 +1,116 @@
 var express = require('express')
 var router = express.Router()
+var fs = require('fs').promises
+var path = require('path')
+var matter = require('gray-matter')
+var { marked } = require('marked')
 
-// 临时数据，后续会替换为数据库
-const articles = [
-  {
-    id: 1,
-    title: '如何使用 Node.js 和 Express 搭建个人博客',
-    slug: 'how-to-build-blog-with-nodejs-express',
-    summary: '本文将介绍如何使用 Node.js 和 Express 框架搭建一个简单的个人博客系统...',
-    content: `
-# 如何使用 Node.js 和 Express 搭建个人博客
+const BLOG_DIR = path.join(__dirname, '../public/blogs')
 
-## 前言
-Node.js 和 Express 是构建 Web 应用的优秀组合...
+/**
+ * 获取所有博客文章
+ * @returns {Promise<Array>} 文章列表
+ */
+async function onGetAllArticles() {
+  const articles = []
 
-## 技术栈
-- Node.js
-- Express
-- EJS
-- Tailwind CSS
+  // 递归遍历博客目录
+  async function scanDir(dir) {
+    const files = await fs.readdir(dir)
 
-## 实现步骤
-1. 首先安装必要的依赖...
-    `,
-    date: '2024-03-20',
-    formattedDate: '2024年03月20日',
-    categories: [
-      { name: 'Node.js', slug: 'nodejs' },
-      { name: '后端开发', slug: 'backend' }
-    ],
-    keywords: 'Node.js,Express,博客系统,Web开发'
+    for (const file of files) {
+      const fullPath = path.join(dir, file)
+      const stat = await fs.stat(fullPath)
+
+      if (stat.isDirectory()) {
+        await scanDir(fullPath)
+      } else if (path.extname(file) === '.md') {
+        // 读取文件内容
+        const content = await fs.readFile(fullPath, 'utf-8')
+        // 解析 frontmatter
+        const { data, content: markdown } = matter(content)
+        // 生成 HTML
+        const html = marked(markdown)
+
+        // 从文件路径生成 URL slug
+        const relativePath = path.relative(BLOG_DIR, fullPath)
+        const slug = relativePath
+          .replace(/\.md$/, '')
+          .split(path.sep)
+          .join('/')
+
+        articles.push({
+          ...data,
+          slug,
+          content: html,
+          formattedDate: new Date(data.date).toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+          }).replace(/\//g, '-')
+        })
+      }
+    }
   }
-]
 
-const categories = [
-  { name: 'Node.js', slug: 'nodejs', count: 1 },
-  { name: '前端开发', slug: 'frontend', count: 0 },
-  { name: '后端开发', slug: 'backend', count: 1 },
-  { name: '全栈开发', slug: 'fullstack', count: 0 }
-]
+  await scanDir(BLOG_DIR)
+
+  // 按日期倒序排序
+  return articles.sort((a, b) => new Date(b.date) - new Date(a.date))
+}
 
 /* 文章列表页 */
-router.get('/', function(req, res, next) {
-  const page = parseInt(req.query.page) || 1
-  const pageSize = 10
-  const totalPages = Math.ceil(articles.length / pageSize)
+router.get('/', async function(req, res, next) {
+  try {
+    const page = parseInt(req.query.page) || 1
+    const pageSize = 10
+    const articles = await onGetAllArticles()
+    const totalPages = Math.ceil(articles.length / pageSize)
+    const paginatedArticles = articles.slice((page - 1) * pageSize, page * pageSize)
 
-  res.render('articles', {
-    title: '污斑兔的个人主页 - 独立开发者-Web全栈-无代码游戏开发-爱好Coding',
-    description: '独立开发者污斑兔的技术博客，分享Web开发、Node.js、Vue等技术文章。',
-    keywords: '技术博客,Web开发,Node.js,Vue,独立开发',
-    author: '污斑兔',
-    articles: articles,
-    categories: categories.map(c => ({
-      ...c,
-      active: false
-    })),
-    currentPage: page,
-    totalPages: totalPages
-  })
-})
-
-/* 分类页 */
-router.get('/category/:slug', function(req, res, next) {
-  const { slug } = req.params
-  const filteredArticles = articles.filter(article =>
-    article.categories.some(c => c.slug === slug)
-  )
-
-  res.render('articles', {
-    title: '污斑兔的个人主页 - 独立开发者-Web全栈-无代码游戏开发-爱好Coding',
-    description: '独立开发者污斑兔的技术博客，分享Web开发、Node.js、Vue等技术文章。',
-    keywords: '技术博客,Web开发,Node.js,Vue,独立开发',
-    author: '污斑兔',
-    articles: filteredArticles,
-    categories: categories.map(c => ({
-      ...c,
-      active: c.slug === slug
-    })),
-    currentPage: 1,
-    totalPages: 1
-  })
+    res.render('articles', {
+      title: '污斑兔的个人主页 - 独立开发者-Web全栈-无代码游戏开发-爱好Coding',
+      description: '独立开发者污斑兔的技术博客，分享Web开发、Node.js、Vue等技术文章。',
+      keywords: '技术博客,Web开发,Node.js,Vue,独立开发',
+      author: '污斑兔',
+      articles: paginatedArticles,
+      categories: [], // 暂时不使用分类
+      currentPage: page,
+      totalPages: totalPages
+    })
+  } catch (err) {
+    next(err)
+  }
 })
 
 /* 文章详情页 */
-router.get('/:slug', function(req, res, next) {
-  const { slug } = req.params
-  const article = articles.find(a => a.slug === slug)
+router.get('/:year/:month/:day/:slug', async function(req, res, next) {
+  try {
+    const { year, month, day, slug } = req.params
+    const articles = await onGetAllArticles()
+    const filePath = `${year}/${month}/${day}/${slug}`
+    const article = articles.find(a => a.slug === filePath)
 
-  if (!article) {
-    return next()
+    if (!article) {
+      return next()
+    }
+
+    const currentIndex = articles.findIndex(a => a.slug === filePath)
+    const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null
+    const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null
+
+    res.render('article', {
+      title: `${article.title} - 污斑兔的个人主页`,
+      description: article.summary,
+      keywords: article.keywords || '技术博客,Web开发,Node.js,Vue,独立开发',
+      author: '污斑兔',
+      article,
+      prevArticle,
+      nextArticle
+    })
+  } catch (err) {
+    next(err)
   }
-
-  const currentIndex = articles.findIndex(a => a.slug === slug)
-  const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null
-  const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null
-
-  res.render('article', {
-    title: '污斑兔的个人主页 - 独立开发者-Web全栈-无代码游戏开发-爱好Coding',
-    description: article.summary,
-    keywords: article.keywords,
-    author: '污斑兔',
-    article,
-    prevArticle,
-    nextArticle
-  })
 })
 
 module.exports = router
