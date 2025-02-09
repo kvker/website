@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <% include partials/meta.ejs %>
+  <meta http-equiv="description" content="<%= article.summary %>">
+  <meta name="description" content="<%= article.summary %>">
+  <meta name="keywords" content="<%= article.keywords %>">
+  <meta name="author" content="<%= author %>">
+  <title><%= article.title %> - <%= title %></title>
+  <link rel='stylesheet' href='/styles/main.css' />
+  <link rel='stylesheet' href='/styles/markdown.css' />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+
+<body class="bg-zinc-50 dark:bg-black">
+  <%- include('partials/header.ejs', {selectedIndex: 2}) %>
+  <main class="flex-auto">
+    <div class="sm:px-8 mt-16 sm:mt-32">
+      <div class="mx-auto w-full max-w-7xl lg:px-8">
+        <div class="relative px-4 sm:px-8 lg:px-12">
+          <div class="mx-auto max-w-2xl lg:max-w-5xl">
+            <article>
+              <!-- 文章头部 -->
+              <header class="flex flex-col">
+                <h1 class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                  <%= article.title %>
+                </h1>
+                <time datetime="<%= article.date %>"
+                      class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+                  <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                  <span class="ml-3"><%= article.formattedDate %></span>
+                </time>
+              </header>
+
+              <!-- 文章标签 -->
+              <div class="mt-8 flex flex-wrap gap-2">
+                <% article.categories.forEach(function(category) { %>
+                  <a href="/articles/category/<%= category.slug %>"
+                     class="px-3 py-1 rounded-full text-sm bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200
+                            hover:bg-teal-500 hover:text-white transition-colors">
+                    <%= category.name %>
+                  </a>
+                <% }); %>
+              </div>
+
+              <!-- 文章内容 -->
+              <div class="mt-8 prose prose-zinc dark:prose-invert">
+                <%- article.content %>
+              </div>
+
+              <!-- 文章底部 -->
+              <div class="mt-16 border-t border-zinc-100 dark:border-zinc-700/40">
+                <div class="flex items-center justify-between mt-6">
+                  <!-- 上一篇 -->
+                  <% if (prevArticle) { %>
+                    <a href="/articles/<%= prevArticle.slug %>"
+                       class="group flex items-center gap-x-2 text-sm font-medium text-zinc-600 dark:text-zinc-400
+                              hover:text-teal-500 dark:hover:text-teal-400">
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4 stroke-current">
+                        <path d="M9.25 5.75 6.75 8l2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                      <%= prevArticle.title %>
+                    </a>
+                  <% } %>
+
+                  <!-- 下一篇 -->
+                  <% if (nextArticle) { %>
+                    <a href="/articles/<%= nextArticle.slug %>"
+                       class="group flex items-center gap-x-2 text-sm font-medium text-zinc-600 dark:text-zinc-400
+                              hover:text-teal-500 dark:hover:text-teal-400">
+                      <%= nextArticle.title %>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4 stroke-current">
+                        <path d="M6.75 5.75 9.25 8l-2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                  <% } %>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('partials/footer.ejs') %>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

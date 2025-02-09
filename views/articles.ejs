@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <% include partials/meta.ejs %>
+  <meta http-equiv="description" content="<%= description %>">
+  <meta name="description" content="<%= description %>">
+  <meta name="keywords" content="<%= keywords %>">
+  <meta name="author" content="<%= author %>">
+  <title>博客文章 - <%= title %></title>
+  <link rel='stylesheet' href='/styles/main.css' />
+</head>
+
+<body class="bg-zinc-50 dark:bg-black">
+  <%- include('partials/header.ejs', {selectedIndex: 2}) %>
+  <main class="flex-auto">
+    <div class="sm:px-8 mt-16 sm:mt-32">
+      <div class="mx-auto w-full max-w-7xl lg:px-8">
+        <div class="relative px-4 sm:px-8 lg:px-12">
+          <div class="mx-auto max-w-2xl lg:max-w-5xl">
+            <header class="max-w-2xl">
+              <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">技术博客</h1>
+              <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+                这里记录了我在技术探索路上的思考与实践，包括前端开发、Node.js应用、架构设计等各个方面的内容。
+              </p>
+            </header>
+
+            <!-- 文章分类标签 -->
+            <div class="mt-8 flex flex-wrap gap-2">
+              <% categories.forEach(function(category) { %>
+                <a href="/articles/category/<%= category.slug %>"
+                   class="px-3 py-1 rounded-full text-sm
+                          <%= category.active ? 'bg-teal-500 text-white' : 'bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200' %>
+                          hover:bg-teal-500 hover:text-white transition-colors">
+                  <%= category.name %>
+                </a>
+              <% }); %>
+            </div>
+
+            <!-- 文章列表 -->
+            <div class="mt-16 sm:mt-20">
+              <div class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+                <div class="flex max-w-3xl flex-col space-y-16">
+                  <% articles.forEach(function(article) { %>
+                    <article class="md:grid md:grid-cols-4 md:items-baseline">
+                      <div class="md:col-span-3 group relative flex flex-col items-start">
+                        <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                          <div class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
+                          <a href="/articles/<%= article.slug %>">
+                            <span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+                            <span class="relative z-10"><%= article.title %></span>
+                          </a>
+                        </h2>
+                        <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5"
+                              datetime="<%= article.date %>">
+                          <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+                            <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                          </span>
+                          <%= article.formattedDate %>
+                        </time>
+                        <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                          <%= article.summary %>
+                        </p>
+                        <div class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+                          阅读全文
+                          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="ml-1 h-4 w-4 stroke-current">
+                            <path d="M6.75 5.75 9.25 8l-2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
+                            datetime="<%= article.date %>">
+                        <%= article.formattedDate %>
+                      </time>
+                    </article>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+
+            <!-- 分页 -->
+            <% if (totalPages > 1) { %>
+              <div class="mt-10 flex justify-center space-x-2">
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                  <a href="/articles?page=<%= i %>"
+                     class="px-4 py-2 text-sm rounded-lg
+                            <%= currentPage === i ? 'bg-teal-500 text-white' : 'bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200' %>
+                            hover:bg-teal-500 hover:text-white transition-colors">
+                    <%= i %>
+                  </a>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('partials/footer.ejs') %>
+</body>
+</html>
