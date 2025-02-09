@@ -1,5 +1,5 @@
 .prose {
-  max-width: 65ch;
+  max-width: 100%;
   color: var(--tw-prose-body);
   line-height: 1.75;
 }
@@ -51,6 +51,24 @@
   margin-top: 1.6em;
   margin-bottom: 1.6em;
   padding-left: 1em;
+}
+
+/* 调整图片最大宽度 */
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 调整代码块样式 */
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* 调整表格样式 */
+.prose table {
+  width: 100%;
+  table-layout: fixed;
 }
 
 /* 更多样式... */

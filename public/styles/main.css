@@ -556,7 +556,7 @@ video {
 
 .prose {
   color: #333;
-  max-width: 65ch;
+  max-width: none;
 }
 
 .prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -833,6 +833,7 @@ video {
   padding-inline-end: 1.1428571em;
   padding-bottom: 0.8571429em;
   padding-inline-start: 1.1428571em;
+  max-width: 100%;
 }
 
 .prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
@@ -1442,10 +1443,6 @@ video {
   justify-content: space-between;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .gap-4 {
   gap: 1rem;
 }
@@ -1628,11 +1625,6 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 
 .py-2 {
