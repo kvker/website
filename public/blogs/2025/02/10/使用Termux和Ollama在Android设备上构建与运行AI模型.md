@@ -15,8 +15,6 @@ readTime: '10 min'
 category: '技术教程'
 ---
 
-# 使用Termux和Ollama在Android设备上构建与运行AI模型
-
 随着移动计算能力的不断增强，直接在手机或平板电脑上开发和运行复杂的机器学习模型变得越来越可行。本文将指导您如何使用Termux应用从GitHub下载并安装所需软件，在您的Android设备上编译Ollama项目，并最终运行一个AI模型。
 
 ## 准备工作
