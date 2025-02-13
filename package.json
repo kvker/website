@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env PORT=13000 nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
     "css": "tailwindcss -i ./public/styles/input.css -o ./public/styles/main.css --watch",
     "start": "node ./bin/www"
   },
@@ -20,7 +20,6 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "nodemon": "^3.1.7"
   }
 }
