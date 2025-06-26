@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ToDos，一个自用的渐进式待办任务系统。">
+  <meta name="keywords" content="ToDos,待办,任务,进度,管理">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ToDos</title>
+  <link rel="stylesheet" href="styles/output.css">
+</head>
+
+<body>
+  <header x-data="headerData" class="navbar bg-base-100 shadow-sm">
+    <section class="navbar-start overflow-x-hidden">
+      <h1 class="text-xl font-bold text-primary truncate family-name">ToDos</h1>
+    </section>
+    <div class="navbar-end flex items-center gap-4 ml-auto">
+      <input placeholder="搜索..." class="input input-bordered w-32 search-input" @keyup.enter="handleSearch" />
+    </div>
+  </header>
+
+  <main x-data="mainData">
+    <section class="task-list">
+      <ul class="list bg-base-100 rounded-box shadow-md overflow-y-scroll h-[calc(100%-40px-0.5rem)]">
+        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide title-row" x-show="!taskList.length" x-text="emptyText">
+        </li>
+        <template x-for="task in taskList" :key="task.id">
+          <li class="list-row flex items-center" :class="{ 'opacity-50': task.status === 'completed' }"
+            :data-task-id="task.id" @click="clickTask">
+            <input type="checkbox" :checked="task.status === 'completed'" class="checkbox" @click.stop
+              @change.stop="changeTaskStatus" />
+            <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp" /></div>
+            <div>
+              <div x-text="task.name"></div>
+              <div class="text-xs uppercase font-semibold opacity-60" x-text="task.description"></div>
+            </div>
+          </li>
+        </template>
+      </ul>
+      <div class="join flex justify-center mt-[0.5rem]">
+        <button class="join-item btn" :class="{ 'btn-disabled': page === 0 }" @click="changePage(page - 1)">«</button>
+        <button class="join-item btn" x-text="page + 1"></button>
+        <button class="join-item btn" :class="{ 'btn-disabled': page === taskCount - 1 }"
+          @click="changePage(page + 1)">»</button>
+      </div>
+    </section>
+
+    <button class="add-task-button btn btn-square fixed bottom-24 right-8" @click="clickAddTaskButton">
+      <svg t="1750496649621" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        p-id="2616" width="256" height="256">
+        <path
+          d="M554.688 170.688v298.624h298.624v85.376H554.688v298.624H469.312V554.688H170.688V469.312h298.624V170.688h85.376z"
+          p-id="2617"></path>
+      </svg>
+    </button>
+    <section is="fd-task-editor" @submit-task="submitTask" @delete-task="deleteTask"></section>
+  </main>
+
+  <section is="fd-loading" x-data :show="$store.common.loadingShow"></section>
+
+  <!-- Libs -->
+  <script src="libs/localforage@1.10.0.min.js"></script>
+  <script src="libs/dayjs@1.11.13.min.js"></script>
+  <!-- Common -->
+  <script src="utils/common.js"></script>
+  <!-- Logic -->
+  <script type="module" src="components/index.js"></script>
+  <script type="module" src="scripts/index.js"></script>
+</body>
+
+</html>

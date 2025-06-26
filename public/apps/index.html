@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="污斑兔的个人应用集合 - 包含TODOS待办任务管理系统等实用工具应用">
+  <meta name="keywords" content="污斑兔,应用,工具,TODOS,待办任务,任务管理,个人应用">
+  <meta name="author" content="污斑兔">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="污斑兔的应用集合">
+  <meta property="og:description" content="污斑兔制作的实用工具应用集合，包含TODOS待办任务管理系统等">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com/apps">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="污斑兔的应用集合">
+  <meta name="twitter:description" content="污斑兔制作的实用工具应用集合">
+
+  <title>污斑兔的应用集合 - 实用工具应用</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#64748b',
+            accent: '#f59e0b'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    .app-card {
+      transition: all 0.3s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold">污斑兔的应用集合</h1>
+      <p class="text-blue-100 mt-2">个人制作的实用工具应用</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Introduction Section -->
+    <section class="mb-12">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">关于这些应用</h2>
+        <p class="text-gray-600">这里收集了我个人开发的各种实用工具应用，每个应用都专注于解决特定的问题。</p>
+      </div>
+    </section>
+
+    <!-- Apps Grid -->
+    <section x-data="appListData">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">应用列表</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- TODOS App -->
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                </path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">TODOS</h3>
+              <p class="text-sm text-gray-500">待办任务管理</p>
+            </div>
+          </div>
+
+          <p class="text-gray-600 mb-4">一个自用的渐进式待办任务系统，支持任务创建、状态管理、搜索和分页功能。</p>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">任务管理</span>
+            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">本地存储</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-gray-500">状态：已完成</span>
+            <a href="todos/"
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors">
+              立即使用
+            </a>
+          </div>
+        </div>
+
+        <!-- Coming Soon App -->
+        <div class="bg-white rounded-lg shadow-md p-6 opacity-60">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gray-400 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">更多应用</h3>
+              <p class="text-sm text-gray-500">开发中...</p>
+            </div>
+          </div>
+
+          <p class="text-gray-600 mb-4">更多实用的工具应用正在开发中，敬请期待！</p>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">即将推出</span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-gray-500">状态：开发中</span>
+            <button class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg text-sm cursor-not-allowed" disabled>
+              敬请期待
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="mt-12">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">应用特色</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">高效实用</h3>
+            <p class="text-gray-600">专注于解决实际问题，提供高效的工具解决方案</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">安全可靠</h3>
+            <p class="text-gray-600">采用本地存储，数据安全，无需担心隐私泄露</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">响应式设计</h3>
+            <p class="text-gray-600">适配各种设备，在手机、平板、电脑上都有良好的体验</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-300">© 2025 污斑兔. 保留所有权利.</p>
+      <p class="text-sm text-gray-400 mt-2">用心制作每一个自定义应用</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('appListData', () => ({
+        init() {
+          console.log('APP列表页面已加载')
+        }
+      }))
+    })
+  </script>
+</body>
+
+</html>

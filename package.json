@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "css": "tailwindcss -i ./public/styles/_input.css -o ./public/styles/main.css --watch",
+    "css": "npx @tailwindcss/cli -i ./public/styles/_input.css -o ./public/styles/main.css --watch",
+    "dev:todos": "concurrently \"npm run css:todos\" \"nodemon ./bin/www\"",
+    "css:todos": "npx @tailwindcss/cli -i public/apps/todos/styles/input.css -o public/apps/todos/styles/output.css --watch",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -23,6 +25,9 @@
     "autoprefixer": "^10.4.17",
     "nodemon": "^3.1.7",
     "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.17"
+    "concurrently": "^9.1.2",
+    "@tailwindcss/cli": "^4.1.7",
+    "daisyui": "^5.0.40",
+    "tailwindcss": "^4.1.7"
   }
 }

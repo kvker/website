@@ -1,0 +1,58 @@
+/* 定义移动端为宽度小于1024px，桌面端为宽度大于等于1024px，不使用其他判断方法 */
+/* 默认是移动端 */
+@layer main, desktop, fullscreen;
+
+@layer main {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  :root {
+    --header-height: 64px;
+    --footer-height: 0;
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: var(--header-height) 1fr;
+    grid-template-areas:
+      "header"
+      "main";
+
+    &>header {
+      grid-area: header;
+      padding: 0.5rem;
+    }
+
+    &>main {
+      grid-area: main;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        "date-selector"
+        "task-list";
+      gap: 0.5rem;
+
+      &>[is="fd-date-selector"] {
+        grid-area: date-selector;
+        overflow: hidden;
+        padding: 0.5rem;
+      }
+
+      &>.task-list {
+        grid-area: task-list;
+        width: 100%;
+        overflow: hidden;
+        padding: 0.5rem;
+        padding-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@layer desktop {
+  @media (min-width: 1024px) {
+    :root {
+      --footer-height: 120px;
+    }
+
+    body {
+      height: fit-content;
+      min-height: 100%;
+      padding: 8px;
+
+      &>footer {
+        display: block;
+        height: var(--footer-height);
+      }
+    }
+  }
+}
