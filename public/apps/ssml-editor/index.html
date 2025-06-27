@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSML Editor</title>
+
+  <style>
+    .tts-sub {
+      position: relative;
+      color: pink;
+      font-weight: bold;
+    }
+
+    .tts-gap {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .tts-gap::after {
+      content: attr(tts-value);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tts-sayas {
+      color: blue;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+  <h1>SSML Editor</h1>
+  <div id="ssmlEditor" contenteditable="true" style="word-break: break-all; white-space: pre-wrap;">
+    112233
+    王老石平日里是个温吞的人，这一次对着衙门里的公人，也忍不住说了一番重话：
+    “你们也是人，也是人生爹妈养的咧，你们要把村里人都逼死咧。”
+  </div>
+
+  <button onclick="onAddSubTag()">添加读音</button>
+  <button onclick="onAddGap()">添加间隔</button>
+  <button onclick="onChangeNumberMode()">数字模式</button>
+
+  <button onclick="onGenerateSSML()">生成SSML</button>
+
+  <script>
+    let selectedText = ''
+    document.addEventListener('selectionchange', function (e) {
+      // console.log(e.target)
+      let selection = document.getSelection()
+      let range = selection.getRangeAt(0)
+      selectedText = range.toString()
+      paranetNode = selection.anchorNode.parentNode
+      // console.log(selection, range, selectedText, paranetNode)
+      if(paranetNode.id === 'ssmlEditor') {
+        console.log('ssmlEditor tag')
+      }
+    })
+
+    function onAddSubTag() {
+      let text = ''
+      if(text = prompt('请输入正确读音。')) {
+        let subTag = `<span tts-value="${text}" class="tts-sub" title="读：${text}">${selectedText}</span>`
+        document.execCommand('insertHTML', false, subTag)
+      }
+    }
+
+    function onAddGap() {
+      let gap = ''
+      if(gap = prompt('请输入间隔时长，单位毫秒。')) {
+        let subTag = `<span tts-value="${gap}" class="tts-gap" title="间隔：${gap}ms">${selectedText}</span>`
+        document.execCommand('insertHTML', false, subTag)
+      }
+    }
+
+    function onChangeNumberMode() {
+      let numberMode = prompt('请输入数字模式，1：数值，2：单个读。')
+      let subTag = `<span tts-value="${numberMode === '1' ? 'number' : 'number_digit'}" class="tts-sayas" title="读法：${numberMode === '1' ? '数值' : '单个读'}">${selectedText}</span>`
+      document.execCommand('insertHTML', false, subTag)
+    }
+
+    function onGenerateSSML() {
+      let html = document.getElementById('ssmlEditor').innerHTML
+      const ssml = onHtmlToSsml(html)
+      navigator.clipboard.writeText(`<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN"><voice name="zh-CN-YunxiNeural">${ssml}</voice></speak>`)
+        .then(() => {
+          alert('复制成功')
+        })
+        .catch((err) => {
+          alert('复制失败')
+        })
+    }
+
+    function onHtmlToSsml(html) {
+      const div = document.createElement('div')
+      div.innerHTML = html
+      console.log(div.childNodes)
+      let ssml = ''
+      for(let i = 0; i < div.childNodes.length; i++) {
+        const node = div.childNodes[i]
+        if(node.nodeType === Node.ELEMENT_NODE) {
+          if(node.localName === 'span') {
+            if(node.classList.contains('tts-sayas')) { // 数值类型
+              ssml += `<say-as interpret-as="${node.getAttribute('tts-value')}">${node.textContent}</say-as>`
+            } else if(node.classList.contains('tts-sub')) { // 发音
+              ssml += `<sub alias="${node.getAttribute('tts-value')}">${node.textContent}</sub>`
+            } else if(node.classList.contains('tts-gap')) { // 间隔
+              ssml += `<break time="${node.getAttribute('tts-value')}ms" />`
+            } else { // 目前只支持间隔、发音、数值类型
+              ssml += node.textContent
+            }
+          } else { // 目前只支持span标签
+            ssml += node.textContent
+          }
+        } else { // 目前只支持span标签
+          ssml += node.textContent
+        }
+      }
+      return ssml
+    }
+  </script>
+</body>
+
+</html>
