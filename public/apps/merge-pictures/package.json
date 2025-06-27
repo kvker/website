@@ -1,0 +1,15 @@
+{
+  "name": "vuepure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"anywhere --host 0.0.0.0 -p 18000\" \"tailwindcss -i ./styles/input.css -o ./styles/main.css --watch\"",
+    "build": "echo ok",
+    "build:css": "tailwindcss -m -i ./styles/input.css -o ./styles/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
