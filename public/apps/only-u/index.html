@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Cache-Control" content="max-age=2592000">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#1f243e">
+  <meta name="apple-mobile-web-app-title" content="only u">
+  <link rel="apple-touch-icon" href="static/img/logo_48.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="Bookmark" href="static/img/logo_48.png">
+  <link rel="shortcut icon" href="static/img/logo_48.png">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="集合,中国搜索引擎,国内,智能搜索引擎,习惯性,个人站,主页,首页,homepage,smart,search">
+  <meta name="description" content="及时反馈需求的搜索引擎,自定义顺序,习惯,排序等等,选择她做你的首页吧,无广告,想怎样,要哪些,随你提!">
+  <title>Only U 一款超级好用的智能搜索引擎, 百度, Google等全收录, 自定义</title>
+  <link media="screen and (min-width: 960px)" rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+  <section class="content">
+    <h1 class="logo">Only U</h1>
+    <section class="remind">
+      <p id="engine_title" class="engine-name">百度</p>
+    </section>
+    <section class="search">
+      <input id="main_input" autofocus="autofocus" placeholder="例:秋裤 淘宝" onkeydown="app.keydownMainInput(event)">
+      <button id="search_button" onclick="app.clickSearchButton(event)">GO</button>
+    </section>
+    <section id="menu">
+      <section id="columns">
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_0.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>综合</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>Google</h3>
+            </button>
+            <button class="row">
+              <h3>百度</h3>
+            </button>
+            <button class="row">
+              <h3>知乎</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_1.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>购物</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>淘宝</h3>
+            </button>
+            <button class="row">
+              <h3>京东</h3>
+            </button>
+            <button class="row">
+              <h3>天猫</h3>
+            </button>
+            <button class="row">
+              <h3>亚马逊</h3>
+            </button>
+            <button class="row">
+              <h3>蘑菇街</h3>
+            </button>
+            <button class="row">
+              <h3>小米</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_2.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>视频</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>爱奇艺</h3>
+            </button>
+            <button class="row">
+              <h3>优酷</h3>
+            </button>
+            <button class="row">
+              <h3>bilibili</h3>
+            </button>
+            <button class="row">
+              <h3>腾讯视频</h3>
+            </button>
+            <button class="row">
+              <h3>YouTube</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_3.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>设计</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>花瓣</h3>
+            </button>
+            <button class="row">
+              <h3>Dribbble</h3>
+            </button>
+            <button class="row">
+              <h3>Behance</h3>
+            </button>
+            <button class="row">
+              <h3>Pinterest</h3>
+            </button>
+            <button class="row">
+              <h3>Reeoo</h3>
+            </button>
+            <button class="row">
+              <h3>Iconfont</h3>
+            </button>
+            <button class="row">
+              <h3>站酷</h3>
+            </button>
+            <button class="row">
+              <h3>Freepik</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_4.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>学习</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>知乎</h3>
+            </button>
+            <button class="row">
+              <h3>翻译</h3>
+            </button>
+            <button class="row">
+              <h3>Kindle</h3>
+            </button>
+            <button class="row">
+              <h3>豆瓣</h3>
+            </button>
+            <button class="row">
+              <h3>微信</h3>
+            </button>
+            <button class="row">
+              <h3>Wiki</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_5.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>生活</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>地图</h3>
+            </button>
+            <button class="row">
+              <h3>快递110</h3>
+            </button>
+            <button class="row">
+              <h3>Twitter</h3>
+            </button>
+            <button class="row">
+              <h3>Facebook</h3>
+            </button>
+            <button class="row">
+              <h3>去哪儿</h3>
+            </button>
+            <button class="row">
+              <h3>微博</h3>
+            </button>
+            <button class="row">
+              <h3>美团</h3>
+            </button>
+            <button class="row">
+              <h3>云音乐</h3>
+            </button>
+            <button class="row">
+              <h3>斗图啦</h3>
+            </button>
+            <button class="row">
+              <h3>图片</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_6.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>开发者</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>NPM</h3>
+            </button>
+            <button class="row">
+              <h3>Github</h3>
+            </button>
+            <button class="row">
+              <h3>jQuery</h3>
+            </button>
+            <button class="row">
+              <h3>Node.js</h3>
+            </button>
+          </section>
+        </section>
+        <section class="column">
+          <figure class="header">
+            <img src="static/img/icon_7.png" alt="icon" class="icon">
+            <figcaption>
+              <h2>应用市场</h2>
+            </figcaption>
+          </figure>
+          <section class="body">
+            <button class="row">
+              <h3>GooglePlay</h3>
+            </button>
+            <button class="row">
+              <h3>小米应用</h3>
+            </button>
+            <button class="row">
+              <h3>应用宝</h3>
+            </button>
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+
+  <script src="js/pure.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

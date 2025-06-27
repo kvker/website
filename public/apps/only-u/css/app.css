@@ -1,0 +1,199 @@
+* {
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+#app {
+  height: 100%;
+}
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+}
+.content .logo {
+  font-family: AlTarikh;
+  font-size: 144px;
+  color: #1f243e;
+  letter-spacing: 0;
+  margin: 0;
+}
+.content .remind {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 8px 0;
+}
+.content .remind .engine-name {
+  font-size: 14px;
+  color: #666;
+}
+.content .remind .button {
+  outline: none;
+  height: 32px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #f2f2f2;
+  cursor: pointer;
+  color: #666;
+}
+.content .remind .button:hover {
+  background: #e2e2e2;
+}
+.content .remind .button:active {
+  background: #d2d2d2;
+}
+.content .remind .smart {
+  outline: none;
+  height: 32px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #f2f2f2;
+  cursor: pointer;
+  color: #666;
+}
+.content .remind .smart:hover {
+  background: #e2e2e2;
+}
+.content .remind .smart:active {
+  background: #d2d2d2;
+}
+.content .remind .normal {
+  outline: none;
+  height: 32px;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #f2f2f2;
+  cursor: pointer;
+  color: #666;
+}
+.content .remind .normal:hover {
+  background: #e2e2e2;
+}
+.content .remind .normal:active {
+  background: #d2d2d2;
+}
+.content .remind .span {
+  position: absolute;
+  bottom: 32px;
+  display: none;
+  font-size: 12px;
+  color: #999;
+}
+.content .search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.content .search #main_input {
+  width: 1000px;
+  height: 65px;
+  border: 1px solid #d8d8d8;
+  padding: 0 10px;
+  border-radius: 5px 0 0 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0 4px white;
+  outline: none;
+  font-size: 24px;
+  color: #333;
+}
+.content .search #search_button {
+  width: 200px;
+  height: 65px;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  background: #1f243e;
+  border-radius: 0 5px 5px 0;
+  font-family: AlTarikh;
+  font-size: 36px;
+  color: #ffffff;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+#menu {
+  width: 100%;
+  height: 320px;
+  margin-top: 56px;
+  box-sizing: border-box;
+  border: 1px solid #d8d8d8;
+}
+#menu #columns {
+  display: flex;
+  height: 100%;
+}
+#menu #columns .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+#menu #columns .column figure {
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+#menu #columns .column figure .icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
+}
+#menu #columns .column .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  letter-spacing: 0;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+#menu #columns .column .row h3 {
+  font-size: 20px;
+}
+#menu #columns .column .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  font-size: 20px;
+  letter-spacing: 0;
+  outline: none;
+  border: 0;
+  color: white;
+  background: #767472;
+  font-family: PingFangSC-Regular;
+}
+#menu #columns .column .header h2 {
+  font-size: 20px;
+}
+#menu #columns .column .body {
+  width: 100%;
+  height: 254px;
+  margin: 24px 0 32px 0;
+  border-right: 1px solid #dcdcdc;
+  overflow-y: scroll;
+}
+#menu #columns .column:last-child .body {
+  border-right: 0;
+}
