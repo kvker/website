@@ -131,6 +131,11 @@
             }).then(ret => {
               this.resultSrc = ret.base64
               this.isModalOpen = true
+              this.$dispatch('notify', {
+                variant: 'warning',
+                title: '提示',
+                message: '搞定.'
+              })
             }).catch(error => {
               console.error(error)
               this.$dispatch('notify', { variant: 'danger', title: '错误！', message: error.message })

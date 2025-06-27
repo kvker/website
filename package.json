@@ -7,6 +7,8 @@
     "css": "npx @tailwindcss/cli -i ./public/styles/_input.css -o ./public/styles/main.css --watch",
     "dev:todos": "concurrently \"npm run css:todos\" \"nodemon ./bin/www\"",
     "css:todos": "npx @tailwindcss/cli -i public/apps/todos/styles/input.css -o public/apps/todos/styles/output.css --watch",
+    "dev:merge-pictures": "concurrently \"npm run css:merge-pictures\" \"nodemon ./bin/www\"",
+    "css:merge-pictures": "npx @tailwindcss/cli -i public/apps/merge-pictures/styles/input.css -o public/apps/merge-pictures/styles/main.css --watch",
     "start": "node ./bin/www"
   },
   "dependencies": {
