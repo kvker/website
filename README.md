@@ -28,6 +28,12 @@
   - 状态管理（完成/未完成）
   - 搜索和分页功能
   - 本地存储，数据安全
+- **黑白隐藏图** - 图片合并工具
+  - 两张同尺寸图片合成
+  - 白背景和黑背景不同视觉效果
+  - 支持多种图片格式转换
+  - 实时预览和背景切换
+  - 一键保存合成结果
 - 更多应用开发中...
 
 ### 📱 响应式设计
@@ -42,12 +48,8 @@ my-website/
 ├── public/                 # 静态资源目录
 │   ├── apps/              # 应用集合
 │   │   ├── index.html     # 应用列表页面
-│   │   └── todos/         # TODOS应用
-│   │       ├── index.html # 应用主页面
-│   │       ├── styles/    # 应用样式
-│   │       ├── scripts/   # 应用脚本
-│   │       ├── components/# 应用组件
-│   │       └── libs/      # 第三方库
+│   │   ├── todos/         # TODOS应用
+│   │   └── merge-pictures/ # 黑白隐藏图应用
 │   ├── blogs/             # 博客文章 (Markdown)
 │   │   └── 2025/         # 按年份组织
 │   ├── styles/            # 全局样式文件
@@ -185,6 +187,11 @@ cover: '封面图片URL'
 - **技术栈**：Alpine.js + Tailwind CSS + LocalForage
 - **功能**：任务管理、状态切换、搜索、分页
 
+### 黑白隐藏图应用
+- **访问地址**：`/apps/merge-pictures/`
+- **技术栈**：HTML5, CSS3, JavaScript, Alpine.js
+- **功能**：两张同尺寸图片合成，白背景和黑背景不同视觉效果，支持多种图片格式转换，实时预览和背景切换，一键保存合成结果
+
 ### 添加新应用
 1. 在 `public/apps/` 下创建新应用目录
 2. 在 `public/apps/index.html` 中添加应用卡片
@@ -299,8 +306,8 @@ module.exports = {
 ## 📞 联系方式
 
 - **开发者**：污斑兔
-- **邮箱**：contact@example.com
-- **GitHub**：[@your-username](https://github.com/your-username)
+- **邮箱**zweizhao@foxmail.com
+- **GitHub**：[@kvker](https://github.com/kvker)
 
 ## 🙏 致谢
 
