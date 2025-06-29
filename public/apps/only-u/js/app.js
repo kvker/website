@@ -159,38 +159,15 @@ app.keydownMainInput = function (e) {
 
 // 到时候迁移到服务器上
 app.fetchNews = function () {
-  fetch('https://newsnow.busiyi.world/api/s/entire', {
+  fetch('/api/apps/hotnews', {
     method: 'POST',
-    body: JSON.stringify({
-      "sources": [
-        "baidu",
-        "bilibili-hot-search",
-        "chongbuluo-hot",
-        "cls-hot",
-        "coolapk",
-        "douyin",
-        "github-trending-today",
-        "hackernews",
-        "hupu",
-        "ifeng",
-        "juejin",
-        "nowcoder",
-        "producthunt",
-        "sspai",
-        "thepaper",
-        "tieba",
-        "toutiao",
-        "wallstreetcn-hot",
-        "weibo",
-        "xueqiu-hotstock",
-        "zhihu"
-      ]
-    }),
     headers: {
       'Content-Type': 'application/json'
     }
   }).then(res => res.json()).then(data => {
     console.log(data)
+  }).catch(error => {
+    console.error('获取热门新闻失败:', error)
   })
 }
 
@@ -206,7 +183,7 @@ app.start = function () {
     button.addEventListener('click', this.search.bind(this))
   }
 
-  // this.fetchNews()
+  this.fetchNews()
 }
 
 app.start()
