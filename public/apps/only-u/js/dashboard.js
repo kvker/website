@@ -79,7 +79,7 @@ const Dashboard = {
     this.startTimeUpdate()
     this.updateDate()
     this.updateWeather()
-    this.updateSunTimes()
+    // this.updateSunTimes()
   },
 
   /**
