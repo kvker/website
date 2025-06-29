@@ -15,11 +15,50 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="keywords" content="集合,中国搜索引擎,国内,智能搜索引擎,习惯性,个人站,主页,首页,homepage,smart,search">
   <meta name="description" content="及时反馈需求的搜索引擎,自定义顺序,习惯,排序等等,选择她做你的首页吧,无广告,想怎样,要哪些,随你提!">
-  <title>Only U 一款超级好用的智能搜索引擎, 百度, Google等全收录, 自定义</title>
+  <title>Only U - 只为你, 一款超级好用的智能搜索引擎, 百度, Google等全收录, 自定义</title>
   <link media="screen and (min-width: 960px)" rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
+  <!-- 仪表盘组件 -->
+  <div id="dashboard" class="dashboard">
+    <div class="dashboard__container">
+      <!-- 时间显示 -->
+      <div class="dashboard__time">
+        <div id="current-time" class="dashboard__time-display">00:00:00</div>
+      </div>
+      
+      <!-- 日期和周几 -->
+      <div class="dashboard__date">
+        <div id="current-date" class="dashboard__date-display">--</div>
+        <div id="current-weekday" class="dashboard__weekday-display">--</div>
+      </div>
+      
+      <!-- 天气信息 -->
+      <div class="dashboard__weather">
+        <div class="dashboard__weather-icon">
+          <span id="weather-icon" class="weather-icon">--</span>
+        </div>
+        <div class="dashboard__weather-info">
+          <div id="weather-temp" class="weather-temp">--</div>
+          <div id="weather-desc" class="weather-desc">--</div>
+        </div>
+      </div>
+      
+      <!-- 日出日落时间 -->
+      <div class="dashboard__sun">
+        <div class="dashboard__sun-item">
+          <span class="sun-icon">🌅</span>
+          <span id="sunrise-time" class="sun-time">06:30</span>
+        </div>
+        <div class="dashboard__sun-item">
+          <span class="sun-icon">🌇</span>
+          <span id="sunset-time" class="sun-time">18:30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section class="content">
     <h1 class="logo">Only U</h1>
     <section class="remind">
@@ -252,6 +291,7 @@
 
   <script src="js/pure.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 
 </html>

@@ -197,3 +197,177 @@ body {
 #menu #columns .column:last-child .body {
   border-right: 0;
 }
+
+/* 仪表盘样式 */
+.dashboard {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(31, 36, 62, 0.95);
+  border-radius: 14px;
+  padding: 14px;
+  color: white;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 196px;
+}
+
+.dashboard__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 时间显示 */
+.dashboard__time {
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 7px;
+}
+
+.dashboard__time-display {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Monospace', monospace;
+}
+
+/* 日期和周几 */
+.dashboard__date {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard__date-display {
+  font-size: 11px;
+  font-weight: 400;
+  color: #e0e0e0;
+}
+
+.dashboard__weekday-display {
+  font-size: 10px;
+  font-weight: 300;
+  color: #b0b0b0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+/* 天气信息 */
+.dashboard__weather {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard__weather-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.weather-icon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.dashboard__weather-info {
+  flex: 1;
+  text-align: right;
+}
+
+.weather-temp {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1px;
+}
+
+.weather-desc {
+  font-size: 12px;
+  color: #b0b0b0;
+  font-weight: 300;
+}
+
+/* 日出日落时间 */
+.dashboard__sun {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+}
+
+.dashboard__sun-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sun-icon {
+  font-size: 12px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.sun-time {
+  font-size: 12px;
+  color: #e0e0e0;
+  font-weight: 400;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dashboard {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    min-width: auto;
+    padding: 10px;
+  }
+  
+  .dashboard__time-display {
+    font-size: 17px;
+  }
+  
+  .dashboard__date {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .dashboard__weather {
+    flex-direction: column;
+    text-align: center;
+    gap: 7px;
+  }
+  
+  .dashboard__weather-icon {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+  
+  .dashboard__weather-info {
+    text-align: center;
+  }
+  
+  .dashboard__sun {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .dashboard__sun-item {
+    justify-content: flex-start;
+  }
+}
