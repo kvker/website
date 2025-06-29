@@ -1,5 +1,5 @@
+@import "tailwindcss";
 @plugin "daisyui";
-@layer tailwindcss, custom;
 
 @layer tailwindcss {
   @tailwind base;
@@ -9,7 +9,6 @@
 
 @layer custom {
   body {
-    max-width: 1280px;
     margin: 0 auto;
   }
 
