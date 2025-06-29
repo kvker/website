@@ -1,0 +1,137 @@
+{
+  "name": "Only U - 智能搜索引擎",
+  "short_name": "Only U",
+  "description": "只为你，一款超级好用的智能搜索引擎，百度、Google等全收录，自定义排序，无广告纯净体验",
+  "start_url": "/apps/only-u/",
+  "display": "standalone",
+  "background_color": "#1f243e",
+  "theme_color": "#1f243e",
+  "orientation": "portrait-primary",
+  "scope": "/apps/only-u/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": [
+    "productivity",
+    "utilities",
+    "search"
+  ],
+  "icons": [
+    {
+      "src": "static/img/logo256.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "static/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "static/img/logo128.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "static/img/logo128.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "static/img/logo128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "static/img/logo256.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "static/img/logo256.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "static/img/logo512.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "百度搜索",
+      "short_name": "百度",
+      "description": "快速使用百度搜索",
+      "url": "/apps/only-u/?engine=baidu",
+      "icons": [
+        {
+          "src": "static/img/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Google搜索",
+      "short_name": "Google",
+      "description": "快速使用Google搜索",
+      "url": "/apps/only-u/?engine=google",
+      "icons": [
+        {
+          "src": "static/img/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "淘宝购物",
+      "short_name": "淘宝",
+      "description": "快速访问淘宝购物",
+      "url": "/apps/only-u/?engine=taobao",
+      "icons": [
+        {
+          "src": "static/img/icon_1.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "B站视频",
+      "short_name": "B站",
+      "description": "快速访问B站视频",
+      "url": "/apps/only-u/?engine=bilibili",
+      "icons": [
+        {
+          "src": "static/img/icon_2.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "static/img/logo.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "share_target": {
+    "action": "/apps/only-u/",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
