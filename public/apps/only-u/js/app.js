@@ -2,9 +2,9 @@ const App = pjs.util.createSubClass()
 const app = new App()
 
 app.data.engines = [
-  { cn: 'guge', en: 'google', link: 'https://www.google.com.hk/search?q=%keyword%', nick: '谷歌', title: 'Google' },
-  { cn: 'baidu', en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度' },
-  { en: 'zhihu', link: 'https://www.zhihu.com/search?type=content&q=%keyword%', nick: 'zihu', title: '知乎', cn: 'zhihu' },
+  { en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度', cn: 'baidu' },
+  { en: 'google', link: 'https://www.google.com.hk/search?q=%keyword%', nick: '谷歌', title: 'Google', cn: 'guge' },
+  { en: 'bing', link: 'https://www.bing.com/search?q=%keyword%', nick: 'bing', title: 'Bing', cn: 'biying' },
   { nick: 'taobao', title: '淘宝', cn: 'taobao', en: 'taobao', link: 'https://s.taobao.com/search?q=%keyword%' },
   { cn: 'jingdong', en: 'jingdong', link: 'https://search.jd.com/Search?keyword=%keyword%&enc=utf-8', nick: 'jd', title: '京东' },
   { cn: 'tianmao', en: 'tmall', link: 'https://list.tmall.com/search_product.htm?q=%keyword%', nick: 'tmall', title: '天猫' },
@@ -95,9 +95,9 @@ app.regist('current_engine', function (engine) {
 // 按钮专属引擎设置
 app.buttonEngine = function (e) {
   const button = e.target
-  for (let m = -1, n = this.data.engines.length; ++m < n; ) {
+  for(let m = -1, n = this.data.engines.length; ++m < n;) {
     const engine = this.data.engines[m]
-    if (engine.title === button.innerText) {
+    if(engine.title === button.innerText) {
       return engine
     }
   }
@@ -105,9 +105,9 @@ app.buttonEngine = function (e) {
 
 // 分词搜索匹配
 app.cutEngine = function (value) {
-  for (let m = -1, n = this.data.engines.length; ++m < n; ) {
+  for(let m = -1, n = this.data.engines.length; ++m < n;) {
     const engine = this.data.engines[m]
-    if (engine.title === value || engine.nick === value || engine.cn === value || engine.en === value) {
+    if(engine.title === value || engine.nick === value || engine.cn === value || engine.en === value) {
       this.config.has_searched = true
       return engine
     }
@@ -129,11 +129,11 @@ app.cutSearch = function () {
   const value = this.dom.main_input.value.trim()
   const split_engines = value.split(' ')
   const length = split_engines.length
-  if (length > 1) {
+  if(length > 1) {
     this.update({
       current_engine: this.cutEngine(split_engines[length - 1])
     })
-    if (this.config.has_searched) split_engines.pop()
+    if(this.config.has_searched) split_engines.pop()
   }
   window.open(this.data.current_engine.link.replace('%keyword%', String(split_engines).replace(/,/g, ' ')))
 }
@@ -149,23 +149,23 @@ app.clickSearchButton = function (e) {
 
 app.keydownMainInput = function (e) {
   // ctrl + enter
-  if (e.ctrlKey && e.keyCode === 13) {
+  if(e.ctrlKey && e.keyCode === 13) {
     this.normalSearch()
     // enter
-  } else if (e.keyCode === 13) {
+  } else if(e.keyCode === 13) {
     this.cutSearch()
   }
 }
 
 app.start = function () {
-  this.data.origin_engine = { cn: 'baidu', en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度' }
+  this.data.origin_engine = app.data.engines[0]
   this.update({
     current_engine: this.data.origin_engine
   })
   this.config.has_searched = false
 
   // 下方所有按钮监听点击
-  for (const button of this.dom.buttons) {
+  for(const button of this.dom.buttons) {
     button.addEventListener('click', this.search.bind(this))
   }
 }

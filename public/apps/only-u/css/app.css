@@ -154,6 +154,7 @@ body {
   width: 17px;
   height: 17px;
   margin-right: 5px;
+  color: white;
 }
 #menu #columns .column .row {
   display: flex;
