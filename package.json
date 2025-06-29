@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "css": "npx @tailwindcss/cli -i ./public/styles/_input.css -o ./public/styles/main.css --watch",
+    "dev": "concurrently \"npm run css\" \"nodemon ./bin/www\"",
+    "css": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch",
     "dev:todos": "concurrently \"npm run css:todos\" \"nodemon ./bin/www\"",
     "css:todos": "npx @tailwindcss/cli -i public/apps/todos/styles/input.css -o public/apps/todos/styles/output.css --watch",
     "dev:merge-pictures": "concurrently \"npm run css:merge-pictures\" \"nodemon ./bin/www\"",

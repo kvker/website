@@ -1,4 +1,4 @@
-class FdAccount extends HTMLElement {
+class CustomAccount extends HTMLElement {
   constructor() {
     super()
     this.mode = 'login' // 'login' or 'register'
@@ -180,4 +180,4 @@ class FdAccount extends HTMLElement {
   }
 }
 
-customElements.define('fd-account', FdAccount, { extends: 'section' })
+customElements.define('custom-account', CustomAccount)

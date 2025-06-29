@@ -1,3 +1,4 @@
+@plugin "daisyui";
 @layer tailwindcss, custom;
 
 @layer tailwindcss {
