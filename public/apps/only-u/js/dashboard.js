@@ -167,7 +167,7 @@ const Dashboard = {
       const lat = position.coords.latitude
       const lon = position.coords.longitude
       // 使用心知天气API获取天气信息
-      const apiKey = 'ms7yfydh195oxocx'
+      const apiKey = 'ms7yfydh195oxocx' // 用你自己的, 这玩意儿用多了就爆了
       const url = `https://api.seniverse.com/v3/weather/now.json?key=${apiKey}&location=${lat}:${lon}&language=zh-Hans&unit=c&start=0&days=1`
 
       const response = await fetch(url)
@@ -232,7 +232,7 @@ const Dashboard = {
     const position = await this.getCurrentPosition()
     const lat = position.coords.latitude
     const lon = position.coords.longitude
-    const apiKey = 'ms7yfydh195oxocx'
+    const apiKey = 'ms7yfydh195oxocx' // 用你自己的, 这玩意儿用多了就爆了
     const url = `https://api.seniverse.com/v3/geo/sun.json?key=${apiKey}&location=${lat}:${lon}&language=zh-Hans&start=0&days=1`
     const response = await fetch(url)
     const { results: [data] } = await response.json()
