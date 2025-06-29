@@ -215,6 +215,82 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   min-width: 196px;
+  transition: all 0.3s ease;
+}
+
+/* 关闭按钮 */
+.dashboard__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.dashboard__close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* 圆圈状态 */
+.dashboard__circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 36, 62, 0.95);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.circle__time {
+  font-size: 16px;
+  font-weight: 900;
+  color: white;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Monospace', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 仪表盘收起状态 */
+.dashboard.collapsed {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dashboard.collapsed .dashboard__close {
+  display: none;
+}
+
+.dashboard.collapsed .dashboard__circle {
+  display: flex;
+}
+
+.dashboard.collapsed .dashboard__container {
+  display: none;
 }
 
 .dashboard__container {
@@ -337,6 +413,17 @@ body {
     right: 10px;
     min-width: auto;
     padding: 10px;
+  }
+  
+  .dashboard.collapsed {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    right: auto;
+  }
+  
+  .circle__time {
+    font-size: 14px;
   }
   
   .dashboard__time-display {

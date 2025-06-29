@@ -23,7 +23,16 @@
 <body>
   <!-- 仪表盘组件 -->
   <div id="dashboard" class="dashboard">
-    <div class="dashboard__container">
+    <!-- 关闭按钮 -->
+    <div id="dashboard-close" class="dashboard__close">×</div>
+    
+    <!-- 圆圈状态 -->
+    <div id="dashboard-circle" class="dashboard__circle">
+      <div id="circle-time" class="circle__time">--</div>
+    </div>
+    
+    <!-- 完整仪表盘内容 -->
+    <div id="dashboard-content" class="dashboard__container">
       <!-- 时间显示 -->
       <div class="dashboard__time">
         <div id="current-time" class="dashboard__time-display">--:--:--</div>
@@ -31,18 +40,18 @@
       
       <!-- 日期和周几 -->
       <div class="dashboard__date">
-        <div id="current-date" class="dashboard__date-display">--</div>
-        <div id="current-weekday" class="dashboard__weekday-display">--</div>
+        <div id="current-date" class="dashboard__date-display">2025年1月1日</div>
+        <div id="current-weekday" class="dashboard__weekday-display">星期一</div>
       </div>
       
       <!-- 天气信息 -->
       <div class="dashboard__weather">
         <div class="dashboard__weather-icon">
-          <span id="weather-icon" class="weather-icon">--</span>
+          <span id="weather-icon" class="weather-icon">☀️</span>
         </div>
         <div class="dashboard__weather-info">
-          <div id="weather-temp" class="weather-temp">--</div>
-          <div id="weather-desc" class="weather-desc">--</div>
+          <div id="weather-temp" class="weather-temp">25°C</div>
+          <div id="weather-desc" class="weather-desc">晴天</div>
         </div>
       </div>
       

@@ -12,8 +12,16 @@ const Dashboard = {
     weatherTemp: null,
     weatherDesc: null,
     sunriseTime: null,
-    sunsetTime: null
+    sunsetTime: null,
+    // 新增元素
+    dashboard: null,
+    dashboardClose: null,
+    dashboardCircle: null,
+    circleTime: null
   },
+
+  // 状态
+  isCollapsed: false,
 
   // 天气图标映射
   weatherIcons: {
@@ -67,10 +75,11 @@ const Dashboard = {
    */
   init() {
     this.initElements()
+    this.initToggleEvents()
     this.startTimeUpdate()
     this.updateDate()
     this.updateWeather()
-    // this.updateSunTimes()
+    this.updateSunTimes()
   },
 
   /**
@@ -85,6 +94,46 @@ const Dashboard = {
     this.elements.weatherDesc = document.getElementById('weather-desc')
     this.elements.sunriseTime = document.getElementById('sunrise-time')
     this.elements.sunsetTime = document.getElementById('sunset-time')
+    
+    // 新增元素
+    this.elements.dashboard = document.getElementById('dashboard')
+    this.elements.dashboardClose = document.getElementById('dashboard-close')
+    this.elements.dashboardCircle = document.getElementById('dashboard-circle')
+    this.elements.circleTime = document.getElementById('circle-time')
+  },
+
+  /**
+   * 初始化切换事件
+   */
+  initToggleEvents() {
+    // 关闭按钮点击事件
+    if(this.elements.dashboardClose) {
+      this.elements.dashboardClose.addEventListener('click', () => {
+        this.toggleCollapse()
+      })
+    }
+    
+    // 圆圈点击事件
+    if(this.elements.dashboardCircle) {
+      this.elements.dashboardCircle.addEventListener('click', () => {
+        this.toggleCollapse()
+      })
+    }
+  },
+
+  /**
+   * 切换收起/展开状态
+   */
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed
+    
+    if(this.elements.dashboard) {
+      if(this.isCollapsed) {
+        this.elements.dashboard.classList.add('collapsed')
+      } else {
+        this.elements.dashboard.classList.remove('collapsed')
+      }
+    }
   },
 
   /**
@@ -106,9 +155,14 @@ const Dashboard = {
     const hours = String(now.getHours()).padStart(2, '0')
     const minutes = String(now.getMinutes()).padStart(2, '0')
     const seconds = String(now.getSeconds()).padStart(2, '0')
-
+    
     if(this.elements.currentTime) {
       this.elements.currentTime.textContent = `${hours}:${minutes}:${seconds}`
+    }
+    
+    // 更新圆圈中的时间（只显示小时和分钟）
+    if(this.elements.circleTime) {
+      this.elements.circleTime.textContent = `${hours}:${minutes}`
     }
   },
 
@@ -167,7 +221,7 @@ const Dashboard = {
       const lat = position.coords.latitude
       const lon = position.coords.longitude
       // 使用心知天气API获取天气信息
-      const apiKey = 'ms7yfydh195oxocx' // 用你自己的, 这玩意儿用多了就爆了
+      const apiKey = 'ms7yfydh195oxocx'
       const url = `https://api.seniverse.com/v3/weather/now.json?key=${apiKey}&location=${lat}:${lon}&language=zh-Hans&unit=c&start=0&days=1`
 
       const response = await fetch(url)
@@ -232,7 +286,7 @@ const Dashboard = {
     const position = await this.getCurrentPosition()
     const lat = position.coords.latitude
     const lon = position.coords.longitude
-    const apiKey = 'ms7yfydh195oxocx' // 用你自己的, 这玩意儿用多了就爆了
+    const apiKey = 'ms7yfydh195oxocx'
     const url = `https://api.seniverse.com/v3/geo/sun.json?key=${apiKey}&location=${lat}:${lon}&language=zh-Hans&start=0&days=1`
     const response = await fetch(url)
     const { results: [data] } = await response.json()
