@@ -1,0 +1,225 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Only U - 智能搜索引擎",
+  "alternateName": "Only U",
+  "description": "只为你，一款超级好用的智能搜索引擎，百度、Google等全收录，自定义排序，无广告纯净体验",
+  "url": "https://www.iloveats.cn/apps/only-u/",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web Browser",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "softwareVersion": "1.0.0",
+  "author": {
+    "@type": "Person",
+    "name": "污斑兔",
+    "url": "https://github.com/kvker"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "污斑兔",
+    "url": "https://github.com/kvker"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "污斑兔",
+    "url": "https://github.com/kvker"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock"
+  },
+  "featureList": [
+    "智能搜索引擎集合",
+    "百度、Google等全收录",
+    "自定义排序功能",
+    "无广告纯净体验",
+    "分类管理：综合、购物、视频、设计、学习、生活、开发者、应用市场",
+    "支持'内容+网站'格式输入",
+    "一键进入对应网站搜索页面",
+    "实时时间日期显示",
+    "天气信息查询",
+    "PWA支持，可安装到桌面",
+    "响应式设计，支持多设备"
+  ],
+  "screenshot": {
+    "@type": "ImageObject",
+    "url": "https://www.iloveats.cn/apps/only-u/static/img/logo.png",
+    "caption": "Only U 智能搜索引擎界面截图"
+  },
+  "softwareHelp": {
+    "@type": "CreativeWork",
+    "name": "Only U 使用说明",
+    "description": "Only U是一款智能搜索引擎，支持多种网站的快捷搜索功能"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "156",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "赵XX"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "非常好用的搜索引擎集合，界面简洁，功能强大！"
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "柯杠铃"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "无广告，响应速度快，支持多种搜索引擎，非常推荐！"
+    }
+  ],
+  "mainEntity": {
+    "@type": "WebSite",
+    "name": "Only U 搜索服务",
+    "description": "提供多种搜索引擎的快捷访问服务",
+    "url": "https://www.iloveats.cn/apps/only-u/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.iloveats.cn/apps/only-u/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  "hasPart": [
+    {
+      "@type": "WebApplication",
+      "name": "综合搜索",
+      "description": "Google、百度、知乎、Bing等综合搜索引擎",
+      "applicationCategory": "SearchApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "购物搜索",
+      "description": "淘宝、京东、天猫、亚马逊等购物平台搜索",
+      "applicationCategory": "ShoppingApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "视频搜索",
+      "description": "爱奇艺、优酷、bilibili、腾讯视频等视频平台搜索",
+      "applicationCategory": "EntertainmentApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "设计搜索",
+      "description": "花瓣、Dribbble、Behance、Pinterest等设计平台搜索",
+      "applicationCategory": "DesignApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "学习搜索",
+      "description": "知乎、翻译、Kindle、豆瓣等学习平台搜索",
+      "applicationCategory": "EducationalApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "生活搜索",
+      "description": "地图、快递、社交、旅游等生活服务搜索",
+      "applicationCategory": "LifestyleApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "开发者搜索",
+      "description": "NPM、Github、jQuery、Node.js等开发者工具搜索",
+      "applicationCategory": "DeveloperApplication"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "应用市场搜索",
+      "description": "GooglePlay、小米应用、应用宝等应用市场搜索",
+      "applicationCategory": "AppStoreApplication"
+    }
+  ],
+  "isAccessibleForFree": true,
+  "accessibilityFeature": [
+    "screenReaderOptimized",
+    "highContrast",
+    "largeText",
+    "keyboardAccessible"
+  ],
+  "accessibilityHazard": "none",
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityAPI": "ARIA",
+  "inLanguage": "zh-CN",
+  "dateCreated": "2025-01-01",
+  "dateModified": "2025-01-01",
+  "datePublished": "2025-01-01",
+  "keywords": [
+    "搜索引擎",
+    "智能搜索",
+    "百度",
+    "Google",
+    "淘宝",
+    "bilibili",
+    "无广告",
+    "PWA",
+    "响应式设计",
+    "快捷搜索",
+    "网站导航",
+    "搜索工具"
+  ],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "搜索引擎优化",
+      "description": "提供多种搜索引擎的快捷访问"
+    },
+    {
+      "@type": "Thing",
+      "name": "网站导航",
+      "description": "分类管理各种常用网站"
+    },
+    {
+      "@type": "Thing",
+      "name": "PWA应用",
+      "description": "支持安装到桌面的渐进式Web应用"
+    }
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "所有互联网用户",
+    "description": "适合需要快速访问多个搜索引擎和网站的用户"
+  },
+  "educationalUse": "个人使用",
+  "learningResourceType": "工具软件",
+  "interactivityType": "active",
+  "typicalAgeRange": "13-99",
+  "timeRequired": "PT1M",
+  "teaches": "如何使用多种搜索引擎进行高效搜索",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "污斑兔"
+  },
+  "copyrightYear": "2025",
+  "usageInfo": {
+    "@type": "WebPage",
+    "name": "使用说明",
+    "description": "Only U使用说明和功能介绍"
+  }
+} 

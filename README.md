@@ -227,6 +227,14 @@ cover: '封面图片URL'
   - **分享功能**：支持分享到其他应用
   - **安装提示**：支持添加到主屏幕/桌面
   - **测试页面**：`/apps/only-u/test-manifest.html` 用于验证PWA功能
+  - **SEO 优化**：
+    - **结构化数据**：`/apps/only-u/schema.json` - Schema.org 结构化数据
+    - **应用类型**：WebApplication
+    - **搜索动作**：支持搜索引擎直接搜索功能
+    - **评分评论**：包含用户评分和评论信息
+    - **功能列表**：详细的功能特性描述
+    - **无障碍支持**：完整的无障碍功能配置
+    - **测试页面**：`/apps/only-u/test-schema.html` 用于验证SEO功能
 
 ### SSML Editor 应用
 - **访问地址**：`/apps/ssml-editor/`
