@@ -1,5 +1,5 @@
-var express = require('express')
-var router = express.Router()
+import express from 'express'
+const router = express.Router()
 
 const metaData = {
   title: '污斑兔的个人主页 - 独立开发者-Web全栈-无代码游戏开发-爱好Coding',
@@ -25,4 +25,4 @@ router.get('/uses', function (req, res, next) {
   res.render('uses', metaData)
 })
 
-module.exports = router
+export default router

@@ -1,9 +1,14 @@
-var express = require('express')
-var router = express.Router()
-var fs = require('fs').promises
-var path = require('path')
-var matter = require('gray-matter')
-var { marked } = require('marked')
+import express from 'express'
+import fs from 'fs/promises'
+import path from 'path'
+import matter from 'gray-matter'
+import { marked } from 'marked'
+import { fileURLToPath } from 'url'
+
+const router = express.Router()
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const BLOG_DIR = path.join(__dirname, '../public/blogs')
 
@@ -113,4 +118,4 @@ router.get('/:year/:month/:day/:slug', async function(req, res, next) {
   }
 })
 
-module.exports = router
+export default router

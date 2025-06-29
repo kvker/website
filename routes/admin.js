@@ -1,10 +1,15 @@
-const express = require('express')
+import express from 'express'
+import fs from 'fs/promises'
+import path from 'path'
+import { exec } from 'child_process'
+import util from 'util'
+import { fileURLToPath } from 'url'
+
 const router = express.Router()
-const fs = require('fs').promises
-const path = require('path')
-const { exec } = require('child_process')
-const util = require('util')
 const execAsync = util.promisify(exec)
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const BLOG_DIR = path.join(__dirname, '../public/blogs')
 
@@ -110,4 +115,4 @@ ${content}`
   }
 })
 
-module.exports = router
+export default router
