@@ -82,3 +82,6 @@ temp/
 # Backup files
 *.bak
 *.backup
+
+# Private
+.private

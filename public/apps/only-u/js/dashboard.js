@@ -79,7 +79,7 @@ const Dashboard = {
     this.startTimeUpdate()
     this.updateDate()
     this.updateWeather()
-    // this.updateSunTimes()
+    this.updateSunTimes()
   },
 
   /**
@@ -94,7 +94,7 @@ const Dashboard = {
     this.elements.weatherDesc = document.getElementById('weather-desc')
     this.elements.sunriseTime = document.getElementById('sunrise-time')
     this.elements.sunsetTime = document.getElementById('sunset-time')
-    
+
     // 新增元素
     this.elements.dashboard = document.getElementById('dashboard')
     this.elements.dashboardClose = document.getElementById('dashboard-close')
@@ -112,7 +112,7 @@ const Dashboard = {
         this.toggleCollapse()
       })
     }
-    
+
     // 圆圈点击事件
     if(this.elements.dashboardCircle) {
       this.elements.dashboardCircle.addEventListener('click', () => {
@@ -126,7 +126,7 @@ const Dashboard = {
    */
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed
-    
+
     if(this.elements.dashboard) {
       if(this.isCollapsed) {
         this.elements.dashboard.classList.add('collapsed')
@@ -155,11 +155,11 @@ const Dashboard = {
     const hours = String(now.getHours()).padStart(2, '0')
     const minutes = String(now.getMinutes()).padStart(2, '0')
     const seconds = String(now.getSeconds()).padStart(2, '0')
-    
+
     if(this.elements.currentTime) {
       this.elements.currentTime.textContent = `${hours}:${minutes}:${seconds}`
     }
-    
+
     // 更新圆圈中的时间（只显示小时和分钟）
     if(this.elements.circleTime) {
       this.elements.circleTime.textContent = `${hours}:${minutes}`
@@ -218,6 +218,7 @@ const Dashboard = {
   async updateWeather() {
     try {
       const position = await this.getCurrentPosition()
+      window.currentPosition = position
       const lat = position.coords.latitude
       const lon = position.coords.longitude
       // 使用心知天气API获取天气信息
@@ -282,23 +283,25 @@ const Dashboard = {
    * 更新日出日落时间
    */
   async updateSunTimes() {
-    // 获取用户位置
-    const position = await this.getCurrentPosition()
-    const lat = position.coords.latitude
-    const lon = position.coords.longitude
-    const apiKey = 'ms7yfydh195oxocx'
-    const url = `https://api.seniverse.com/v3/geo/sun.json?key=${apiKey}&location=${lat}:${lon}&language=zh-Hans&start=0&days=1`
-    const response = await fetch(url)
-    const { results: [data] } = await response.json()
-    const sunrise = data.sun.sunrise
-    const sunset = data.sun.sunset
+    try {
+      const position = await this.getCurrentPosition()
+      const lat = position.coords.latitude
+      const lon = position.coords.longitude
+      const url = `/api/apps/sun/status?latitude=${lat}&longitude=${lon}`
+      const response = await fetch(url)
+      const { data } = await response.json()
+      const sunrise = dayjs(data.sunrise).format('HH:mm')
+      const sunset = dayjs(data.sunset).format('HH:mm')
 
-    if(this.elements.sunriseTime) {
-      this.elements.sunriseTime.textContent = sunrise
-    }
+      if(this.elements.sunriseTime) {
+        this.elements.sunriseTime.textContent = sunrise
+      }
 
-    if(this.elements.sunsetTime) {
-      this.elements.sunsetTime.textContent = sunset
+      if(this.elements.sunsetTime) {
+        this.elements.sunsetTime.textContent = sunset
+      }
+    } catch(error) {
+      console.warn('获取日出日落时间失败:', error)
     }
   },
 

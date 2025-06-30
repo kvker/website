@@ -15,12 +15,14 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "cookie-parser": "~1.4.4",
+    "dayjs": "^1.11.13",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.7.0",
     "http-errors": "~1.6.3",
+    "jose": "^6.0.11",
     "marked": "^12.0.0",
     "morgan": "~1.9.1",
     "node-fetch": "^3.3.2"

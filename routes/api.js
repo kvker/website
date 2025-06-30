@@ -1,4 +1,5 @@
 import express from 'express'
+import sun from './apps/sun.js'
 
 const router = express.Router()
 
@@ -58,5 +59,7 @@ router.post('/apps/hotnews', async (req, res) => {
     })
   }
 })
+
+router.use('/apps/sun', sun)
 
 export default router 
