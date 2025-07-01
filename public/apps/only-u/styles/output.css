@@ -4194,6 +4194,9 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
+[x-cloak] {
+  display: none;
+}
 .content {
   display: flex;
   flex-direction: column;
@@ -4357,6 +4360,195 @@ body {
   }
   .join .input::placeholder {
     color: rgba(255, 255, 255, 0.6);
+  }
+}
+.engine-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+.engine-modal {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  width: 500px;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.engine-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+.engine-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+.engine-modal-close {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+.engine-modal-close:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+.engine-modal-body {
+  flex: 1;
+  overflow: hidden;
+  padding: 1rem;
+}
+.engine-list {
+  max-height: 400px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+.engine-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.engine-item:hover {
+  border-color: #3b82f6;
+  background: #f0f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+.engine-item-active {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+.engine-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+.engine-nick {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+.engine-list::-webkit-scrollbar {
+  width: 6px;
+}
+.engine-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+.engine-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.engine-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+@media (prefers-color-scheme: dark) {
+  .engine-modal {
+    background: #1f2937;
+    border: 1px solid #374151;
+  }
+  .engine-modal-header {
+    background: #111827;
+    border-bottom-color: #374151;
+  }
+  .engine-modal-title {
+    color: #f9fafb;
+  }
+  .engine-modal-close {
+    color: #9ca3af;
+  }
+  .engine-modal-close:hover {
+    background: #374151;
+    color: #d1d5db;
+  }
+  .engine-item {
+    background: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+  .engine-item:hover {
+    background: #1e3a8a;
+    border-color: #3b82f6;
+  }
+  .engine-item-active {
+    background: #1e40af;
+    border-color: #3b82f6;
+  }
+  .engine-name {
+    color: #f9fafb;
+  }
+  .engine-nick {
+    color: #9ca3af;
+  }
+  .engine-list::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  .engine-list::-webkit-scrollbar-thumb {
+    background: #6b7280;
+  }
+  .engine-list::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+}
+@media (max-width: 768px) {
+  .engine-modal {
+    width: 95%;
+    max-height: 85%;
+  }
+  .engine-modal-header {
+    padding: 1rem;
+  }
+  .engine-modal-title {
+    font-size: 1.125rem;
+  }
+  .engine-modal-body {
+    padding: 0.75rem;
+  }
+  .engine-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+    max-height: 350px;
+  }
+  .engine-item {
+    padding: 0.75rem;
+  }
+  .engine-name {
+    font-size: 0.8rem;
+  }
+  .engine-nick {
+    font-size: 0.7rem;
   }
 }
 @layer base {

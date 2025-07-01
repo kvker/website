@@ -61,8 +61,8 @@
   <main x-data="mainData" class="content">
     <h1 class="logo">Only U</h1>
     <section class="remind">
-      <button type="button" class="btn btn-sm btn-outline btn-primary" x-text="currentEngine.title"
-        title="engineTitle"></button>
+      <button type="button" class="btn btn-sm btn-outline btn-primary" x-text="currentEngine.title" title="engineTitle"
+        @click="clickCurrentEngine"></button>
     </section>
     <section class="search">
       <div class="join w-full max-w-4xl">
@@ -75,6 +75,37 @@
         </button>
       </div>
     </section>
+
+    <!-- 引擎切换弹窗 -->
+    <div x-cloak x-show="showEngineModal" x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0" class="engine-modal-overlay" @click="closeEngineModal">
+      <div x-show="showEngineModal" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95" class="engine-modal" @click.stop>
+        <div class="engine-modal-header">
+          <h3 class="engine-modal-title">选择搜索引擎</h3>
+          <button @click="closeEngineModal" class="engine-modal-close" aria-label="关闭">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="engine-modal-body">
+          <div class="engine-list">
+            <template x-for="engine in engines" :key="engine.en">
+              <button @click="selectEngine(engine)" class="engine-item"
+                :class="{ 'engine-item-active': engine.en === currentEngine.en }">
+                <span class="engine-name" x-text="engine.title"></span>
+                <span class="engine-nick" x-text="engine.nick"></span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- 仪表盘组件 -->

@@ -87,6 +87,17 @@ document.addEventListener('alpine:init', () => {
     engines,
     currentEngine: engines[0],
     value: '',
+    showEngineModal: false,
+
+    init() {
+      // 监听ESC键关闭弹窗
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && this.showEngineModal) {
+          this.closeEngineModal()
+        }
+      })
+    },
+
     search(e) {
       if(e.ctrlKey) return
 
@@ -102,8 +113,22 @@ document.addEventListener('alpine:init', () => {
       }
       this.normalSearch()
     },
+
     normalSearch() {
       window.open(this.currentEngine.link.replace('%keyword%', this.value))
+    },
+
+    clickCurrentEngine() {
+      this.showEngineModal = true
+    },
+
+    closeEngineModal() {
+      this.showEngineModal = false
+    },
+
+    selectEngine(engine) {
+      this.currentEngine = engine
+      this.closeEngineModal()
     }
   }))
 })
