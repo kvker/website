@@ -1,7 +1,4 @@
-const App = pjs.util.createSubClass()
-const app = new App()
-
-app.data.engines = [
+const engines = [
   { en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度', cn: 'baidu' },
   { en: 'google', link: 'https://www.google.com.hk/search?q=%keyword%', nick: '谷歌', title: 'Google', cn: 'guge' },
   { en: 'bing', link: 'https://www.bing.com/search?q=%keyword%', nick: 'bing', title: 'Bing', cn: 'biying' },
@@ -85,114 +82,28 @@ app.data.engines = [
   }
 ]
 
-app.dom.buttons = app.util.$$('.row')
+document.addEventListener('alpine:init', () => {
+  Alpine.data('mainData', () => ({
+    engines,
+    currentEngine: engines[0],
+    value: '',
+    search(e) {
+      if(e.ctrlKey) return
 
-app.regist('current_engine', function (engine) {
-  // 设置当前引擎并修改左上的 Title
-  this.dom.engine_title.innerText = engine.title
+      const splitTexts = this.value.split(' ')
+      const length = splitTexts.length
+      if(length > 1) {
+        const currentEngine = this.engines.find(engine => engine.title === splitTexts[length - 1])
+        if(currentEngine) {
+          this.currentEngine = currentEngine
+          splitTexts.pop()
+          return window.open(this.currentEngine.link.replace('%keyword%', String(splitTexts).replace(/,/g, ' ')))
+        }
+      }
+      this.normalSearch()
+    },
+    normalSearch() {
+      window.open(this.currentEngine.link.replace('%keyword%', this.value))
+    }
+  }))
 })
-
-// 按钮专属引擎设置
-app.buttonEngine = function (e) {
-  const button = e.target
-  for(let m = -1, n = this.data.engines.length; ++m < n;) {
-    const engine = this.data.engines[m]
-    if(engine.title === button.innerText) {
-      return engine
-    }
-  }
-}
-
-// 分词搜索匹配
-app.cutEngine = function (value) {
-  for(let m = -1, n = this.data.engines.length; ++m < n;) {
-    const engine = this.data.engines[m]
-    if(engine.title === value || engine.nick === value || engine.cn === value || engine.en === value) {
-      this.config.has_searched = true
-      return engine
-    }
-  }
-  this.config.has_searched = false
-  return this.data.origin_engine
-}
-
-// 下方按钮搜多
-app.search = function (e) {
-  this.update({
-    current_engine: this.buttonEngine(e)
-  })
-  window.open(this.data.current_engine.link.replace('%keyword%', this.dom.main_input.value))
-}
-
-// 分词搜索
-app.cutSearch = function () {
-  const value = this.dom.main_input.value.trim()
-  const split_engines = value.split(' ')
-  const length = split_engines.length
-  if(length > 1) {
-    this.update({
-      current_engine: this.cutEngine(split_engines[length - 1])
-    })
-    if(this.config.has_searched) split_engines.pop()
-  }
-  window.open(this.data.current_engine.link.replace('%keyword%', String(split_engines).replace(/,/g, ' ')))
-}
-
-// 常规搜索，不做分词解析
-app.normalSearch = function () {
-  window.open(this.data.current_engine.link.replace('%keyword%', this.dom.main_input.value))
-}
-
-app.clickSearchButton = function (e) {
-  this.normalSearch(e)
-}
-
-app.keydownMainInput = function (e) {
-  // ctrl + enter
-  if(e.ctrlKey && e.keyCode === 13) {
-    this.normalSearch()
-    // enter
-  } else if(e.keyCode === 13) {
-    this.cutSearch()
-  }
-}
-
-// 到时候迁移到服务器上
-app.fetchNews = function () {
-  fetch('/api/apps/hotnews', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(res => res.json()).then(data => {
-    console.log(data)
-  }).catch(error => {
-    console.error('获取热门新闻失败:', error)
-  })
-}
-
-app.start = function () {
-  this.data.origin_engine = app.data.engines[0]
-  this.update({
-    current_engine: this.data.origin_engine
-  })
-  this.config.has_searched = false
-
-  // 下方所有按钮监听点击
-  for(const button of this.dom.buttons) {
-    button.addEventListener('click', this.search.bind(this))
-  }
-
-  this.fetchNews()
-}
-
-app.clickFullscreenButton = function (e) {
-  // 是否全屏
-  if(document.fullscreenElement) {
-    document.exitFullscreen()
-  } else {
-    document.documentElement.requestFullscreen()
-  }
-}
-
-app.start()

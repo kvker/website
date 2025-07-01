@@ -54,9 +54,29 @@
   <link rel="shortcut icon" href="favicon.ico">
   <title>Only U - 只为你, 一款超级好用的智能搜索引擎, 百度, Google等全收录, 自定义</title>
   <link rel="stylesheet" href="styles/output.css">
+  <script defer src="/libs/alpinejs@3.14.9.min.js"></script>
 </head>
 
 <body>
+  <main x-data="mainData" class="content">
+    <h1 class="logo">Only U</h1>
+    <section class="remind">
+      <button type="button" class="btn btn-sm btn-outline btn-primary" x-text="currentEngine.title"
+        title="engineTitle"></button>
+    </section>
+    <section class="search">
+      <div class="join w-full max-w-4xl">
+        <input class="input input-bordered join-item w-full text-lg focus:input-primary focus:outline-none"
+          autofocus="autofocus" placeholder="例:秋裤 淘宝" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
+          x-model.trim="value">
+        <button type="button" @click="search"
+          class="btn btn-primary join-item px-8 text-lg font-bold hover:btn-secondary transition-all duration-200">
+          GO
+        </button>
+      </div>
+    </section>
+  </main>
+
   <!-- 仪表盘组件 -->
   <div id="dashboard"
     class="fixed top-5 left-5 z-50 bg-base-300/90 backdrop-blur-md rounded-2xl p-4 text-base-content shadow-2xl border border-base-content/10 min-w-[196px] transition-all duration-300 ease-in-out dashboard collapsed">
@@ -114,23 +134,17 @@
     </div>
   </div>
 
-  <section class="content">
-    <h1 class="logo">Only U</h1>
-    <section class="remind">
-      <button class="engine-name">百度</button>
-    </section>
-    <section class="search">
-      <input id="main_input" autofocus="autofocus" placeholder="例:秋裤 淘宝" onkeydown="app.keydownMainInput(event)">
-      <button onclick="app.clickSearchButton(event)">GO</button>
-    </section>
-  </section>
   <custom-account id="customAccount"></custom-account>
 
   <!-- 全屏按钮 -->
-  <div id="fullscreen-button" class="fullscreen-button" onclick="app.clickFullscreenButton(event)">
-    <svg class="fullscreen-button__icon" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
-    </svg>
+  <div id="fullscreen-button" class="fixed bottom-5 right-5 z-40"
+    onclick="javascript:if(document.fullscreenElement) {document.exitFullscreen()} else {document.documentElement.requestFullscreen()}">
+    <button class="btn btn-circle btn-primary shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
+      aria-label="全屏切换">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+      </svg>
+    </button>
   </div>
 
   <!-- <div id="login-fab" class="login-fab" onclick="customAccount.open()">
@@ -143,10 +157,10 @@
   <script src="../../scripts/components/CustomAccount.js"></script> -->
 
   <script src="/libs/dayjs@1.11.13.min.js"></script>
-  <script src="/libs/alpinejs@3.14.9.min.js"></script>
   <script src="/scripts/eruda.js"></script>
-  <script src="scripts/index.js"></script>
+  <script src="/scripts/utils.js"></script>
   <script src="scripts/dashboard.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
