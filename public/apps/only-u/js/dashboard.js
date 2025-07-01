@@ -203,11 +203,6 @@ const Dashboard = {
       navigator.geolocation.getCurrentPosition(
         (position) => resolve(position),
         (error) => reject(error),
-        {
-          enableHighAccuracy: false,
-          timeout: 10000,
-          maximumAge: 60000
-        }
       )
     })
   },
@@ -235,7 +230,7 @@ const Dashboard = {
       }
     } catch(error) {
       console.warn('获取天气数据失败:', error)
-      this.setDefaultWeather()
+      this.hideWeather()
     }
   },
 
@@ -265,18 +260,9 @@ const Dashboard = {
   /**
    * 设置默认天气信息
    */
-  setDefaultWeather() {
-    if(this.elements.weatherTemp) {
-      this.elements.weatherTemp.textContent = '--'
-    }
-
-    if(this.elements.weatherDesc) {
-      this.elements.weatherDesc.textContent = '--'
-    }
-
-    if(this.elements.weatherIcon) {
-      this.elements.weatherIcon.textContent = '--'
-    }
+  hideWeather() {
+    document.querySelector('.dashboard__weather').style.display = 'none'
+    document.querySelector('.dashboard__sun').style.display = 'none'
   },
 
   /**
