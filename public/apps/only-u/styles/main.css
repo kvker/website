@@ -1,0 +1,75 @@
+/* 仪表盘收起状态样式 */
+.dashboard.collapsed {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dashboard.collapsed #dashboard-close {
+  display: none;
+}
+
+.dashboard.collapsed #dashboard-circle {
+  display: flex;
+}
+
+.dashboard.collapsed #dashboard-content {
+  display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dashboard {
+    top: 10px;
+    left: 10px;
+    min-width: 160px;
+    padding: 12px;
+  }
+
+  .dashboard.collapsed {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+  }
+
+  #circle-time {
+    font-size: 14px;
+  }
+
+  #current-time {
+    font-size: 18px;
+  }
+
+  /* 移动端布局调整 */
+  .dashboard #dashboard-content>div:nth-child(2) {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dashboard #dashboard-content>div:nth-child(3) {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .dashboard #dashboard-content>div:nth-child(3)>div:first-child {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+
+  .dashboard #dashboard-content>div:nth-child(3)>div:last-child {
+    text-align: center;
+  }
+
+  .dashboard #dashboard-content>div:last-child {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dashboard #dashboard-content>div:last-child>div {
+    justify-content: center;
+  }
+}

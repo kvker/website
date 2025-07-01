@@ -53,55 +53,62 @@
   <link rel="Bookmark" href="favicon.ico">
   <link rel="shortcut icon" href="favicon.ico">
   <title>Only U - 只为你, 一款超级好用的智能搜索引擎, 百度, Google等全收录, 自定义</title>
-  <link media="screen and (min-width: 1024px)" rel="stylesheet" href="css/app.css">
-  <link media="screen and (max-width: 1023px)" rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="../../styles/output.css">
+  <link rel="stylesheet" href="styles/output.css">
 </head>
 
 <body>
   <!-- 仪表盘组件 -->
-  <div id="dashboard" class="dashboard collapsed">
+  <div id="dashboard"
+    class="fixed top-5 left-5 z-50 bg-base-300/90 backdrop-blur-md rounded-2xl p-4 text-base-content shadow-2xl border border-base-content/10 min-w-[196px] transition-all duration-300 ease-in-out dashboard collapsed">
     <!-- 关闭按钮 -->
-    <div id="dashboard-close" class="dashboard__close">×</div>
+    <div id="dashboard-close"
+      class="absolute top-2 right-2 w-5 h-5 bg-base-content/20 rounded-full flex items-center justify-center cursor-pointer text-sm font-bold text-base-content hover:bg-base-content/30 hover:scale-110 transition-all duration-200 z-10">
+      ×</div>
 
     <!-- 圆圈状态 -->
-    <div id="dashboard-circle" class="dashboard__circle">
-      <div id="circle-time" class="circle__time">--</div>
+    <div id="dashboard-circle"
+      class="absolute inset-0 bg-base-300/90 rounded-full hidden items-center justify-center cursor-pointer transition-all duration-300 ease-in-out backdrop-blur-md shadow-2xl border border-base-content/10">
+      <div id="circle-time" class="text-base font-black text-base-content font-mono drop-shadow-lg">--</div>
     </div>
 
     <!-- 完整仪表盘内容 -->
-    <div id="dashboard-content" class="dashboard__container">
+    <div id="dashboard-content" class="flex flex-col gap-3">
       <!-- 时间显示 -->
-      <div class="dashboard__time">
-        <div id="current-time" class="dashboard__time-display">--:--:--</div>
+      <div class="text-center border-b border-base-content/20 pb-2">
+        <div id="current-time" class="text-2xl font-black tracking-wider text-base-content drop-shadow-lg font-mono">
+          --:--:--</div>
       </div>
 
       <!-- 日期和周几 -->
-      <div class="dashboard__date">
-        <div id="current-date" class="dashboard__date-display">2025年1月1日</div>
-        <div id="current-weekday" class="dashboard__weekday-display">星期一</div>
+      <div class="text-center flex justify-between items-center">
+        <div id="current-date" class="text-xs font-normal text-base-content/80">2025年1月1日</div>
+        <div id="current-weekday"
+          class="text-xs font-light text-base-content/60 bg-base-content/10 px-2 py-1 rounded-lg">星期一</div>
       </div>
 
       <!-- 天气信息 -->
-      <div class="dashboard__weather">
-        <div class="dashboard__weather-icon">
-          <span id="weather-icon" class="weather-icon">--</span>
+      <div
+        class="flex items-center justify-between py-2 border-t border-base-content/10 border-b border-base-content/10">
+        <div class="text-2xl mr-3">
+          <span id="weather-icon" class="drop-shadow-lg">--</span>
         </div>
-        <div class="dashboard__weather-info">
-          <div id="weather-temp" class="weather-temp">--</div>
-          <div id="weather-desc" class="weather-desc">--</div>
+        <div class="flex-1 text-right">
+          <div id="weather-temp" class="text-sm font-medium text-base-content mb-0.5">--</div>
+          <div id="weather-desc" class="text-xs text-base-content/60 font-light">--</div>
         </div>
       </div>
 
       <!-- 日出日落时间 -->
-      <div class="dashboard__sun">
-        <div class="dashboard__sun-item">
-          <span class="sun-icon">🌅</span>
-          <span id="sunrise-time" class="sun-time">--</span>
+      <div class="flex justify-between gap-2">
+        <div
+          class="flex items-center gap-1 flex-1 justify-center bg-base-content/5 p-2 rounded-lg border border-base-content/10">
+          <span class="text-xs drop-shadow-sm">🌅</span>
+          <span id="sunrise-time" class="text-xs text-base-content/80 font-normal">--</span>
         </div>
-        <div class="dashboard__sun-item">
-          <span class="sun-icon">🌇</span>
-          <span id="sunset-time" class="sun-time">--</span>
+        <div
+          class="flex items-center gap-1 flex-1 justify-center bg-base-content/5 p-2 rounded-lg border border-base-content/10">
+          <span class="text-xs drop-shadow-sm">🌇</span>
+          <span id="sunset-time" class="text-xs text-base-content/80 font-normal">--</span>
         </div>
       </div>
     </div>
@@ -110,254 +117,11 @@
   <section class="content">
     <h1 class="logo">Only U</h1>
     <section class="remind">
-      <p id="engine_title" class="engine-name">百度</p>
+      <button class="engine-name">百度</button>
     </section>
     <section class="search">
       <input id="main_input" autofocus="autofocus" placeholder="例:秋裤 淘宝" onkeydown="app.keydownMainInput(event)">
-      <button id="search_button" onclick="app.clickSearchButton(event)">GO</button>
-    </section>
-    <section id="menu">
-      <section id="columns">
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            <figcaption>
-              <h2>综合</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>Google</h3>
-            </button>
-            <button class="row">
-              <h3>百度</h3>
-            </button>
-            <button class="row">
-              <h3>知乎</h3>
-            </button>
-            <button class="row">
-              <h3>Bing</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-            </svg>
-            <figcaption>
-              <h2>购物</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>淘宝</h3>
-            </button>
-            <button class="row">
-              <h3>京东</h3>
-            </button>
-            <button class="row">
-              <h3>天猫</h3>
-            </button>
-            <button class="row">
-              <h3>亚马逊</h3>
-            </button>
-            <button class="row">
-              <h3>蘑菇街</h3>
-            </button>
-            <button class="row">
-              <h3>小米</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
-            </svg>
-            <figcaption>
-              <h2>视频</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>爱奇艺</h3>
-            </button>
-            <button class="row">
-              <h3>优酷</h3>
-            </button>
-            <button class="row">
-              <h3>bilibili</h3>
-            </button>
-            <button class="row">
-              <h3>腾讯视频</h3>
-            </button>
-            <button class="row">
-              <h3>YouTube</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            <figcaption>
-              <h2>设计</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>花瓣</h3>
-            </button>
-            <button class="row">
-              <h3>Dribbble</h3>
-            </button>
-            <button class="row">
-              <h3>Behance</h3>
-            </button>
-            <button class="row">
-              <h3>Pinterest</h3>
-            </button>
-            <button class="row">
-              <h3>Reeoo</h3>
-            </button>
-            <button class="row">
-              <h3>Iconfont</h3>
-            </button>
-            <button class="row">
-              <h3>站酷</h3>
-            </button>
-            <button class="row">
-              <h3>Freepik</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09v6.91L12 23 1 15v-6l11-6z" />
-            </svg>
-            <figcaption>
-              <h2>学习</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>知乎</h3>
-            </button>
-            <button class="row">
-              <h3>翻译</h3>
-            </button>
-            <button class="row">
-              <h3>Kindle</h3>
-            </button>
-            <button class="row">
-              <h3>豆瓣</h3>
-            </button>
-            <button class="row">
-              <h3>微信</h3>
-            </button>
-            <button class="row">
-              <h3>Wiki</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg>
-            <figcaption>
-              <h2>生活</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>地图</h3>
-            </button>
-            <button class="row">
-              <h3>快递110</h3>
-            </button>
-            <button class="row">
-              <h3>Twitter</h3>
-            </button>
-            <button class="row">
-              <h3>Facebook</h3>
-            </button>
-            <button class="row">
-              <h3>去哪儿</h3>
-            </button>
-            <button class="row">
-              <h3>微博</h3>
-            </button>
-            <button class="row">
-              <h3>美团</h3>
-            </button>
-            <button class="row">
-              <h3>云音乐</h3>
-            </button>
-            <button class="row">
-              <h3>斗图啦</h3>
-            </button>
-            <button class="row">
-              <h3>图片</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
-            </svg>
-            <figcaption>
-              <h2>开发者</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>NPM</h3>
-            </button>
-            <button class="row">
-              <h3>Github</h3>
-            </button>
-            <button class="row">
-              <h3>jQuery</h3>
-            </button>
-            <button class="row">
-              <h3>Node.js</h3>
-            </button>
-          </section>
-        </section>
-        <section class="column">
-          <figure class="header">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-            </svg>
-            <figcaption>
-              <h2>应用市场</h2>
-            </figcaption>
-          </figure>
-          <section class="body">
-            <button class="row">
-              <h3>GooglePlay</h3>
-            </button>
-            <button class="row">
-              <h3>小米应用</h3>
-            </button>
-            <button class="row">
-              <h3>应用宝</h3>
-            </button>
-          </section>
-        </section>
-      </section>
+      <button onclick="app.clickSearchButton(event)">GO</button>
     </section>
   </section>
   <custom-account id="customAccount"></custom-account>
@@ -380,10 +144,9 @@
 
   <script src="/libs/dayjs@1.11.13.min.js"></script>
   <script src="/libs/alpinejs@3.14.9.min.js"></script>
-  <script src="js/pure.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/dashboard.js"></script>
   <script src="/scripts/eruda.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/dashboard.js"></script>
 </body>
 
 </html>
