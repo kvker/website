@@ -230,7 +230,7 @@ const Dashboard = {
       }
     } catch(error) {
       console.warn('获取天气数据失败:', error)
-      this.hideWeather()
+      this.hideLocationPart()
     }
   },
 
@@ -260,7 +260,7 @@ const Dashboard = {
   /**
    * 设置默认天气信息
    */
-  hideWeather() {
+  hideLocationPart() {
     document.querySelector('.dashboard__weather').style.display = 'none'
     document.querySelector('.dashboard__sun').style.display = 'none'
   },
@@ -288,6 +288,7 @@ const Dashboard = {
       }
     } catch(error) {
       console.warn('获取日出日落时间失败:', error)
+      this.hideLocationPart()
     }
   },
 
