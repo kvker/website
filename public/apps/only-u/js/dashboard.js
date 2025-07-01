@@ -204,7 +204,7 @@ const Dashboard = {
         (position) => resolve(position),
         (error) => reject(error),
         {
-          enableHighAccuracy: true,
+          enableHighAccuracy: false,
           timeout: 10000,
           maximumAge: 60000
         }
