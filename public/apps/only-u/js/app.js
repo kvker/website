@@ -187,7 +187,12 @@ app.start = function () {
 }
 
 app.clickFullscreenButton = function (e) {
-  document.documentElement.requestFullscreen()
+  // 是否全屏
+  if(document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen()
+  }
 }
 
 app.start()
