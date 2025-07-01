@@ -104,7 +104,8 @@ document.addEventListener('alpine:init', () => {
       const splitTexts = this.value.split(' ')
       const length = splitTexts.length
       if(length > 1) {
-        const currentEngine = this.engines.find(engine => engine.title === splitTexts[length - 1])
+        const maybeEngine = splitTexts[length - 1]
+        const currentEngine = this.engines.find(engine => engine.title === maybeEngine || engine.nick === maybeEngine || engine.cn === maybeEngine || engine.en === maybeEngine)
         if(currentEngine) {
           this.currentEngine = currentEngine
           splitTexts.pop()
