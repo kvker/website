@@ -1,12 +1,15 @@
 * {
   box-sizing: border-box;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
+
 html {
   height: 100%;
 }
+
 body {
   height: 100%;
   position: relative;
@@ -15,9 +18,11 @@ body {
   align-items: center;
   margin: 0;
 }
+
 #app {
   height: 100%;
 }
+
 .content {
   position: relative;
   display: flex;
@@ -27,6 +32,7 @@ body {
   width: 90%;
   max-width: 1200px;
 }
+
 .content .logo {
   font-family: AlTarikh;
   font-size: 144px;
@@ -34,6 +40,7 @@ body {
   letter-spacing: 0;
   margin: 0;
 }
+
 .content .remind {
   display: flex;
   justify-content: space-between;
@@ -41,10 +48,12 @@ body {
   width: 100%;
   margin: 8px 0;
 }
+
 .content .remind .engine-name {
   font-size: 14px;
   color: #666;
 }
+
 .content .remind .button {
   outline: none;
   height: 32px;
@@ -54,12 +63,15 @@ body {
   cursor: pointer;
   color: #666;
 }
+
 .content .remind .button:hover {
   background: #e2e2e2;
 }
+
 .content .remind .button:active {
   background: #d2d2d2;
 }
+
 .content .remind .smart {
   outline: none;
   height: 32px;
@@ -69,12 +81,15 @@ body {
   cursor: pointer;
   color: #666;
 }
+
 .content .remind .smart:hover {
   background: #e2e2e2;
 }
+
 .content .remind .smart:active {
   background: #d2d2d2;
 }
+
 .content .remind .normal {
   outline: none;
   height: 32px;
@@ -84,12 +99,15 @@ body {
   cursor: pointer;
   color: #666;
 }
+
 .content .remind .normal:hover {
   background: #e2e2e2;
 }
+
 .content .remind .normal:active {
   background: #d2d2d2;
 }
+
 .content .remind .span {
   position: absolute;
   bottom: 32px;
@@ -97,11 +115,13 @@ body {
   font-size: 12px;
   color: #999;
 }
+
 .content .search {
   display: flex;
   align-items: center;
   width: 100%;
 }
+
 .content .search #main_input {
   width: 1000px;
   height: 65px;
@@ -114,6 +134,7 @@ body {
   font-size: 24px;
   color: #333;
 }
+
 .content .search #search_button {
   width: 200px;
   height: 65px;
@@ -128,6 +149,7 @@ body {
   letter-spacing: 0;
   cursor: pointer;
 }
+
 #menu {
   width: 100%;
   height: 320px;
@@ -135,27 +157,32 @@ body {
   box-sizing: border-box;
   border: 1px solid #d8d8d8;
 }
+
 #menu #columns {
   display: flex;
   height: 100%;
 }
+
 #menu #columns .column {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
 }
+
 #menu #columns .column figure {
   margin: 0;
   justify-content: center;
   align-items: center;
 }
+
 #menu #columns .column figure .icon {
   width: 17px;
   height: 17px;
   margin-right: 5px;
   color: white;
 }
+
 #menu #columns .column .row {
   display: flex;
   justify-content: center;
@@ -168,9 +195,11 @@ body {
   cursor: pointer;
   background: transparent;
 }
+
 #menu #columns .column .row h3 {
   font-size: 20px;
 }
+
 #menu #columns .column .header {
   display: flex;
   justify-content: center;
@@ -185,9 +214,11 @@ body {
   background: #767472;
   font-family: PingFangSC-Regular;
 }
+
 #menu #columns .column .header h2 {
   font-size: 20px;
 }
+
 #menu #columns .column .body {
   width: 100%;
   height: 254px;
@@ -195,6 +226,7 @@ body {
   border-right: 1px solid #dcdcdc;
   overflow-y: scroll;
 }
+
 #menu #columns .column:last-child .body {
   border-right: 0;
 }
@@ -414,47 +446,47 @@ body {
     min-width: auto;
     padding: 10px;
   }
-  
+
   .dashboard.collapsed {
     width: 50px;
     height: 50px;
     min-width: 50px;
     right: auto;
   }
-  
+
   .circle__time {
     font-size: 14px;
   }
-  
+
   .dashboard__time-display {
     font-size: 17px;
   }
-  
+
   .dashboard__date {
     flex-direction: column;
     gap: 4px;
   }
-  
+
   .dashboard__weather {
     flex-direction: column;
     text-align: center;
     gap: 7px;
   }
-  
+
   .dashboard__weather-icon {
     margin-right: 0;
     margin-bottom: 4px;
   }
-  
+
   .dashboard__weather-info {
     text-align: center;
   }
-  
+
   .dashboard__sun {
     flex-direction: column;
     gap: 6px;
   }
-  
+
   .dashboard__sun-item {
     justify-content: flex-start;
   }
@@ -505,9 +537,19 @@ body {
     width: 48px;
     height: 48px;
   }
-  
+
   .login-fab__icon {
     width: 20px;
     height: 20px;
   }
+}
+
+/* 全屏按钮 */
+.fullscreen-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
 }

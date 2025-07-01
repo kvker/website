@@ -186,4 +186,8 @@ app.start = function () {
   this.fetchNews()
 }
 
+app.clickFullscreenButton = function (e) {
+  document.documentElement.requestFullscreen()
+}
+
 app.start()

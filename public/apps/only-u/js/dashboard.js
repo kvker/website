@@ -21,7 +21,7 @@ const Dashboard = {
   },
 
   // 状态
-  isCollapsed: false,
+  isCollapsed: true,
 
   // 天气图标映射
   weatherIcons: {
