@@ -154,14 +154,13 @@ body {
   }
 
   .dashboard #dashboard-content>div:nth-child(3) {
-    flex-direction: column;
     text-align: center;
     gap: 4px;
   }
 
   .dashboard #dashboard-content>div:nth-child(3)>div:first-child {
+    flex: 1;
     margin-right: 0;
-    margin-bottom: 4px;
   }
 
   .dashboard #dashboard-content>div:nth-child(3)>div:last-child {
@@ -468,7 +467,7 @@ body {
   background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
   color: #fff;
   border: none;
-  transition: all 0.2s cubic-bezier(.4,2,.6,1);
+  transition: all 0.2s cubic-bezier(.4, 2, .6, 1);
   outline: none;
 }
 
@@ -486,6 +485,7 @@ body {
     color: #fff;
     box-shadow: 0 4px 24px rgba(59, 130, 246, 0.25);
   }
+
   .engine-switch-btn:hover,
   .engine-switch-btn:focus {
     background: linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);

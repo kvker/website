@@ -17,7 +17,7 @@ const Dashboard = {
     dashboard: null,
     dashboardClose: null,
     dashboardCircle: null,
-    circleTime: null
+    circleElement: null
   },
 
   // 状态
@@ -99,7 +99,7 @@ const Dashboard = {
     this.elements.dashboard = document.getElementById('dashboard')
     this.elements.dashboardClose = document.getElementById('dashboard-close')
     this.elements.dashboardCircle = document.getElementById('dashboard-circle')
-    this.elements.circleTime = document.getElementById('circle-time')
+    this.elements.circleElement = document.getElementById('circle-element')
   },
 
   /**
@@ -159,11 +159,6 @@ const Dashboard = {
     if(this.elements.currentTime) {
       this.elements.currentTime.textContent = `${hours}:${minutes}:${seconds}`
     }
-
-    // 更新圆圈中的时间（只显示小时和分钟）
-    if(this.elements.circleTime) {
-      this.elements.circleTime.textContent = `${hours}:${minutes}`
-    }
   },
 
   /**
@@ -192,16 +187,14 @@ const Dashboard = {
     return new Promise((resolve, reject) => {
       if(!navigator.geolocation) {
         reject(new Error('浏览器不支持地理位置'))
-        return {
-          coords: {
-            latitude: 39.9042,
-            longitude: 116.4074
-          }
-        }
+        return
       }
 
       navigator.geolocation.getCurrentPosition(
-        (position) => resolve(position),
+        (position) => {
+          resolve(position)
+          this.elements.dashboard.classList.remove('hidden')
+        },
         (error) => reject(error),
       )
     })
@@ -246,6 +239,7 @@ const Dashboard = {
 
     if(this.elements.weatherTemp) {
       this.elements.weatherTemp.textContent = `${temp}°C`
+      this.elements.circleElement.textContent = this.elements.weatherTemp.textContent
     }
 
     if(this.elements.weatherDesc) {
