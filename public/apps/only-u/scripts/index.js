@@ -1,7 +1,7 @@
 const engines = [
+  { en: 'bing', link: 'https://www.bing.com/search?q=%keyword%', nick: 'bing', title: 'Bing', cn: 'biying' },
   { en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度', cn: 'baidu' },
   { en: 'google', link: 'https://www.google.com.hk/search?q=%keyword%', nick: '谷歌', title: 'Google', cn: 'guge' },
-  { en: 'bing', link: 'https://www.bing.com/search?q=%keyword%', nick: 'bing', title: 'Bing', cn: 'biying' },
   { nick: 'taobao', title: '淘宝', cn: 'taobao', en: 'taobao', link: 'https://s.taobao.com/search?q=%keyword%' },
   { cn: 'jingdong', en: 'jingdong', link: 'https://search.jd.com/Search?keyword=%keyword%&enc=utf-8', nick: 'jd', title: '京东' },
   { cn: 'tianmao', en: 'tmall', link: 'https://list.tmall.com/search_product.htm?q=%keyword%', nick: 'tmall', title: '天猫' },

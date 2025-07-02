@@ -58,11 +58,11 @@
 </head>
 
 <body>
-  <main x-data="mainData" class="content">
+  <main x-data="mainData" class="content mb-[80px] lg:mb-[120px]">
     <h1 class="logo">Only U</h1>
     <section class="remind">
-      <button type="button" class="btn btn-sm btn-outline btn-primary" x-text="currentEngine.title" title="engineTitle"
-        @click="clickCurrentEngine"></button>
+      <button type="button" class="btn btn-lg btn-primary engine-switch-btn" x-text="currentEngine.title"
+        title="engineTitle" @click="clickCurrentEngine"></button>
     </section>
     <section class="search">
       <div class="join w-full max-w-4xl">
