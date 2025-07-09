@@ -1,6 +1,7 @@
 {
   "name": "Only U - 智能搜索引擎",
   "short_name": "Only U",
+  "id": "cn.ilovecats.pwaonlyu",
   "description": "只为你，一款超级好用的智能搜索引擎，百度、Google等全收录，自定义排序，无广告纯净体验",
   "start_url": "/apps/only-u/",
   "display": "standalone",
@@ -11,9 +12,10 @@
   "lang": "zh-CN",
   "dir": "ltr",
   "categories": [
+    "news",
     "productivity",
     "utilities",
-    "search"
+    "weather"
   ],
   "icons": [
     {
@@ -497,7 +499,7 @@
       "url": "/apps/only-u/?engine=taobao",
       "icons": [
         {
-          "src": "static/img/icon_1.png",
+          "src": "static/img/logo.png",
           "sizes": "96x96"
         }
       ]
@@ -509,7 +511,7 @@
       "url": "/apps/only-u/?engine=bilibili",
       "icons": [
         {
-          "src": "static/img/icon_2.png",
+          "src": "static/img/logo.png",
           "sizes": "96x96"
         }
       ]
@@ -528,9 +530,9 @@
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+      "title": "聚合搜索引擎",
+      "text": "收录常用搜索引擎，输入内容+引擎，即可一键搜索。",
+      "url": "https://www.ilovecats.cn/apps/only-u/"
     }
   },
   "edge_side_panel": {
@@ -538,6 +540,10 @@
   },
   "display_override": [
     "fullscreen",
-    "window-controls-overlay"
-  ]
+    "window-controls-overlay",
+    "browser",
+    "minimal-ui",
+    "standalone"
+  ],
+  "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9"
 }
