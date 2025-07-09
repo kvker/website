@@ -90,7 +90,7 @@ class FdTaskEditor extends HTMLElement {
               <label class="label">
                 <span class="label-text">任务描述</span>
               </label>
-              <input name="description" type="text" placeholder="请输入任务描述" class="input input-bordered w-full" required />
+              <input name="description" type="text" placeholder="请输入任务描述" class="input input-bordered w-full" />
             </div>
             <div class="modal-action flex flex-col items-stretch gap-2">
               <button type="submit" class="btn btn-primary">提交</button>
