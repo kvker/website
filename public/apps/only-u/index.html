@@ -107,10 +107,21 @@
       </div>
     </div>
   </main>
+  
+  <!-- 白噪音 -->
+  <div x-data="whiteNoiseData" class="fixed top-5 left-5 z-40 white-noise-container">
+    <button @click="togglePlay" 
+            :class="isPlaying ? 'btn-secondary' : 'btn-primary'"
+            class="btn btn-circle shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110">
+      <span x-text="isPlaying ? '🔊' : '🔇'" 
+            :class="isPlaying ? 'animate-pulse' : ''"
+            class="text-xs drop-shadow-sm"></span>
+    </button>
+  </div>
 
   <!-- 仪表盘组件 -->
   <div id="dashboard"
-    class="fixed top-5 left-5 z-50 bg-base-300/90 backdrop-blur-md rounded-2xl p-4 text-base-content shadow-2xl border border-base-content/10 min-w-[196px] transition-all duration-300 ease-in-out dashboard collapsed hidden">
+    class="fixed top-20 left-5 z-50 bg-base-300/90 backdrop-blur-md rounded-2xl p-4 text-base-content shadow-2xl border border-base-content/10 min-w-[196px] transition-all duration-300 ease-in-out dashboard collapsed hidden">
     <!-- 关闭按钮 -->
     <div id="dashboard-close"
       class="absolute top-2 right-2 w-5 h-5 bg-base-content/20 rounded-full flex items-center justify-center cursor-pointer text-sm font-bold text-base-content hover:bg-base-content/30 hover:scale-110 transition-all duration-200 z-10">
@@ -190,6 +201,8 @@
   <script src="/libs/dayjs@1.11.13.min.js"></script>
   <script src="/scripts/eruda.js"></script>
   <script src="/scripts/utils.js"></script>
+  <script src="static/data/media.js"></script>
+  <script src="scripts/white-noise.js"></script>
   <script src="scripts/dashboard.js"></script>
   <script src="scripts/index.js"></script>
   <script>

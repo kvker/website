@@ -122,12 +122,20 @@ body {
   }
 }
 
+/* 白噪音按钮响应式 */
+@media (max-width: 768px) {
+  .white-noise-container {
+    top: 10px;
+    left: 10px;
+  }
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
 
   /* 仪表盘响应式 */
   .dashboard {
-    top: 10px;
+    top: 70px;
     left: 10px;
     min-width: 160px;
     padding: 12px;
