@@ -39,6 +39,7 @@
         "date-selector"
         "task-list";
       gap: 0.5rem;
+      overflow: scroll;
 
       &>[is="fd-date-selector"] {
         grid-area: date-selector;
