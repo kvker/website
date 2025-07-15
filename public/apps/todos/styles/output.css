@@ -2141,6 +2141,16 @@
     width: 50%;
     justify-content: flex-start;
   }
+  .carousel {
+    display: inline-flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
   .alert {
     display: grid;
     align-items: center;

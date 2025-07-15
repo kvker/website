@@ -84,7 +84,7 @@ export default class Index {
         this.status = 'loading'
         try {
           const taskList = await getTaskList({ page: this.page, limit: this.limit })
-          this.taskList = taskList
+          this.taskList = taskList.sort((a, b) => b.createdAt - a.createdAt).sort((a, b) => a.status === 'completed' ? 1 : -1)
           this.taskCount = taskList.length || 1 // 如果没有数据，前端显示1页
           this.status = 'success'
         } catch(error) {
