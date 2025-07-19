@@ -17,7 +17,7 @@ export async function createTask({ name, description = '', status = 'pending' })
 export async function updateTask(taskId, params = {}) {
   const task = await localforage.getItem(taskId)
   for(const key in params) {
-    if(params[key]) {
+    if(isNotNull(params[key])) {
       task[key] = params[key]
     }
   }
