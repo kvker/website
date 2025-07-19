@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML转Markdown工具 - 污斑兔</title>
+  <meta name="description" content="在线HTML转Markdown工具，支持多种HTML标签转换，简单易用">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <script defer src="/libs/alpinejs@3.14.9.min.js"></script>
+</head>
+
+<body class="min-h-screen bg-base-200" x-data="html2md">
+  <!-- 主要内容 -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- 标题区域 -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-primary mb-4">
+        HTML转Markdown工具
+        <button class="btn btn-ghost btn-circle" @click="onToggleTheme()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+      </h1>
+      <p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+        简单易用的在线HTML转Markdown工具，支持多种HTML标签转换，让您的HTML代码快速转换为Markdown格式
+      </p>
+    </div>
+
+    <!-- 功能区域 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <!-- HTML输入区域 -->
+      <div class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title text-primary">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+            HTML输入
+          </h2>
+          <div class="form-control">
+            <textarea x-model="htmlInput" class="textarea textarea-bordered h-64 font-mono text-sm w-full resize-none"
+              placeholder="请输入HTML代码，例如：&#10;&lt;h1&gt;标题&lt;/h1&gt;&#10;&lt;p&gt;这是一个&lt;strong&gt;段落&lt;/strong&gt;。&lt;/p&gt;&#10;&lt;ul&gt;&#10;  &lt;li&gt;列表项1&lt;/li&gt;&#10;  &lt;li&gt;列表项2&lt;/li&gt;&#10;&lt;/ul&gt;"></textarea>
+          </div>
+          <div class="card-actions justify-end mt-4">
+            <button class="btn btn-outline btn-sm" @click="onClearInput()">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                </path>
+              </svg>
+              清空
+            </button>
+            <button class="btn btn-outline btn-sm" @click="onLoadExample()">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                </path>
+              </svg>
+              加载示例
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Markdown输出区域 -->
+      <div class="card bg-base-100 shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title text-secondary">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+              </path>
+            </svg>
+            Markdown输出
+          </h2>
+          <div class="form-control">
+            <textarea x-model="markdownOutput"
+              class="textarea textarea-bordered h-64 font-mono text-sm w-full resize-none"
+              placeholder="转换后的Markdown代码将显示在这里..." readonly></textarea>
+          </div>
+          <div class="card-actions justify-end mt-4">
+            <button class="btn btn-outline btn-sm" @click="onCopyOutput()">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                </path>
+              </svg>
+              复制
+            </button>
+            <button class="btn btn-outline btn-sm" @click="onDownloadMarkdown()">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+              </svg>
+              下载
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 转换按钮 -->
+    <div class="text-center mb-8">
+      <button class="btn btn-primary btn-lg" @click="onConvertHtml()" :disabled="isConverting">
+        <svg class="w-6 h-6" :class="{ 'animate-spin': isConverting }" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path x-show="!isConverting" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          <path x-show="isConverting" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+          </path>
+        </svg>
+        <span x-text="isConverting ? '转换中...' : '转换为Markdown'"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast通知 -->
+  <div class="toast toast-end">
+    <div class="alert alert-success" x-show="showSuccessToast" x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 transform translate-x-full"
+      x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 transform translate-x-0"
+      x-transition:leave-end="opacity-0 transform translate-x-full">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span x-text="toastMessage"></span>
+    </div>
+    <div class="alert alert-error" x-show="showErrorToast" x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 transform translate-x-full"
+      x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 transform translate-x-0"
+      x-transition:leave-end="opacity-0 transform translate-x-full">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span x-text="toastMessage"></span>
+    </div>
+  </div>
+
+  <script src="libs/html-to-md.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -53,6 +53,13 @@
   - 添加读音标注、时间间隔、数字模式等功能
   - 可导出标准SSML格式文本
   - 适用于语音合成和TTS应用开发
+- **HTML转Markdown工具** - 在线HTML转Markdown转换工具
+  - 支持多种HTML标签转换（标题、段落、链接、图片、列表、表格等）
+  - 实时转换功能，输入即转换
+  - 本地处理，保护隐私和数据安全
+  - 支持复制结果和下载文件
+  - 响应式设计，支持多设备使用
+  - 主题切换功能
 - 更多应用开发中...
 
 ### 📱 响应式设计
@@ -70,7 +77,8 @@ my-website/
 │   │   ├── todos/         # TODOS应用
 │   │   ├── merge-pictures/ # 黑白隐藏图应用
 │   │   ├── only-u/        # Only U快捷搜索应用
-│   │   └── ssml-editor/   # SSML Editor应用
+│   │   ├── ssml-editor/   # SSML Editor应用
+│   │   └── html2md/       # HTML转Markdown工具
 │   ├── blogs/             # 博客文章 (Markdown)
 │   │   └── 2025/         # 按年份组织
 │   ├── styles/            # 全局样式文件
@@ -162,6 +170,9 @@ npm run css
 
 # 构建TODOS应用样式
 npm run css:todos
+
+# 构建HTML转Markdown工具样式
+npm run css:html2md
 ```
 
 ### 生产环境
@@ -246,6 +257,11 @@ cover: '封面图片URL'
 - **访问地址**：`/apps/ssml-editor/`
 - **技术栈**：HTML5, CSS3, JavaScript
 - **功能**：极简的SSML编辑器，支持富文本编辑，添加读音标注、时间间隔、数字模式等功能，可导出标准SSML格式文本，适用于语音合成和TTS应用开发
+
+### HTML转Markdown工具
+- **访问地址**：`/apps/html2md/`
+- **技术栈**：HTML5, CSS3, JavaScript, Tailwind CSS, DaisyUI
+- **功能**：在线HTML转Markdown转换工具，支持多种HTML标签转换，实时转换功能，本地处理保护隐私，支持复制结果和下载文件，响应式设计，主题切换功能
 
 ### 添加新应用
 1. 在 `public/apps/` 下创建新应用目录

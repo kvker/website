@@ -8,12 +8,12 @@
     "css": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch",
     "dev:todos": "concurrently \"npm run css:todos\" \"nodemon ./bin/www\"",
     "css:todos": "npx @tailwindcss/cli -i public/apps/todos/styles/input.css -o public/apps/todos/styles/output.css --watch",
-    "dev:only-u": "concurrently \"npm run css:only-u\" \"nodemon ./bin/www\"",
-    "css:only-u": "npx @tailwindcss/cli -i public/apps/only-u/styles/input.css -o public/apps/only-u/styles/output.css --watch",
     "dev:onlyu": "concurrently \"npm run css:only-u\" \"nodemon ./bin/www\"",
     "css:onlyu": "npx @tailwindcss/cli -i public/apps/only-u/styles/input.css -o public/apps/only-u/styles/output.css --watch",
     "dev:merge-pictures": "concurrently \"npm run css:merge-pictures\" \"nodemon ./bin/www\"",
     "css:merge-pictures": "npx @tailwindcss/cli -i public/apps/merge-pictures/styles/input.css -o public/apps/merge-pictures/styles/main.css --watch",
+    "dev:html2md": "concurrently \"npm run css:html2md\" \"nodemon ./bin/www\"",
+    "css:html2md": "npx @tailwindcss/cli -i public/apps/html2md/styles/input.css -o public/apps/html2md/styles/main.css --watch",
     "start": "node ./bin/www"
   },
   "dependencies": {
