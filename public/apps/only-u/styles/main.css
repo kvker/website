@@ -2,7 +2,8 @@
   --color-primary: #667eea;
   --text-primary: #342D4D;
   --text-gray: #929292;
-  --border__color--gray: #DADADA;
+  --border__color-gray: #DADADA;
+  --bg-gray: #595959;
 }
 
 /* 基础布局 */
@@ -20,4 +21,10 @@ body {
 
 [x-cloak] {
   display: none;
+}
+
+.tools-section:hover {
+  .tools-section-remind {
+    display: flex;
+  }
 }

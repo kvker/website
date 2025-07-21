@@ -84,18 +84,28 @@ const engines = [
 
 document.addEventListener('alpine:init', () => {
   const now = dayjs()
+
+  Alpine.store('common', {
+    showEngineModal: false,
+  })
+
+  Alpine.data('headerData', () => ({
+    toggleEngineModal() {
+      this.$store.common.showEngineModal = !this.$store.common.showEngineModal
+    }
+  }))
+
   Alpine.data('mainData', () => ({
     engines,
     currentEngine: engines[0],
     value: '',
-    showEngineModal: false,
     date: now.format('MM-DD'),
     weekday: '星期' + getWeekday(now.day() - 1),
 
     init() {
       // 监听ESC键关闭弹窗
       document.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape' && this.showEngineModal) {
+        if(e.key === 'Escape' && this.$store.common.showEngineModal) {
           this.closeEngineModal()
         }
       })
@@ -120,10 +130,10 @@ document.addEventListener('alpine:init', () => {
       window.open(this.currentEngine.link.replace('%keyword%', this.value))
     },
     clickCurrentEngine() {
-      this.showEngineModal = true
+      this.$store.common.showEngineModal = true
     },
     closeEngineModal() {
-      this.showEngineModal = false
+      this.$store.common.showEngineModal = false
     },
     selectEngine(engine) {
       this.currentEngine = engine
