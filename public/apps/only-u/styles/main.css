@@ -1,3 +1,10 @@
+:root {
+  --color-primary: #667eea;
+  --text-primary: #342D4D;
+  --text-gray: #929292;
+  --border__color--gray: #DADADA;
+}
+
 /* 基础布局 */
 html,
 body,
@@ -7,84 +14,12 @@ main {
 
 /* 整体布局样式 */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
 [x-cloak] {
   display: none;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  width: 90%;
-  max-width: 800px;
-}
-
-.logo {
-  font-size: 4rem;
-  font-weight: 900;
-  color: white;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  margin: 0;
-  letter-spacing: 0.1em;
-  animation: fadeInDown 1s ease-out;
-}
-
-.remind {
-  display: flex;
-  justify-content: center;
-}
-
-.search {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* 搜索框组样式 */
-.join {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  overflow: hidden;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.join .input {
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  padding: 1rem 1.5rem;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-}
-
-.join .input:focus {
-  background: white;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.join .btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  padding: 1rem 2rem;
-  font-weight: 700;
-  transition: all 0.3s ease;
-}
-
-.join .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
 /* 仪表盘收起状态样式 */

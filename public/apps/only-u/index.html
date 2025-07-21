@@ -57,23 +57,42 @@
   <script defer src="/libs/alpinejs@3.14.9.min.js"></script>
 </head>
 
-<body>
-  <main x-data="mainData" class="content mb-[80px] lg:mb-[120px]">
-    <h1 class="logo">Only U</h1>
-    <section class="remind">
+<body class="flex flex-col">
+  <header class="px-12 py-8 flex justify-between items-center">
+    <h1 class="logo" title="SO SO Quick, Only U">
+      <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/icons/logo.png" alt="Only U"
+        class="w-auto h-8">
+    </h1>
+    <section class="tools-section">
+      <button class="btn btn-ghost btn-circle">
+        <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/more.svg" alt="更多"
+          class="w-5 h-5">
+      </button>
+    </section>
+  </header>
+
+  <main x-data="mainData" class="flex-1 flex flex-col items-center justify-center max-w-[1280px] mb-[80px] lg:mb-[120px] text-[var(--text-primary)]">
+    <!-- <section class="remind">
       <button type="button" class="btn btn-lg btn-primary engine-switch-btn" x-text="currentEngine.title"
         title="engineTitle" @click="clickCurrentEngine"></button>
-    </section>
-    <section class="search">
-      <div class="join w-full max-w-4xl">
+    </section> -->
+    <p class="text-2xl font-bold">早上好</p>
+    <p class="text-xs text-gray mt-4 mb-16">今天天气不错，适合出门走走</p>
+    <section class="search-section relative">
+      <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/search.svg" alt="搜索"
+        class="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5">
+      <input class="w-[760px] h-12 text-sm rounded-full color-[var(--text-gray)] shadow-[0_0_10px_rgba(0,0,0,0.1)] px-[60px] focus:input-primary focus:outline-none"
+        autofocus="autofocus" placeholder="输入搜索+空格+网站" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
+        x-model.trim="value">
+      <!-- <div class="join w-full max-w-4xl">
         <input class="input input-bordered join-item w-full text-lg focus:input-primary focus:outline-none"
           autofocus="autofocus" placeholder="例:秋裤 淘宝" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
-          x-model.trim="value">
-        <button type="button" @click="search"
+          x-model.trim="value"> -->
+        <!-- <button type="button" @click="search"
           class="btn btn-primary join-item px-8 text-lg font-bold hover:btn-secondary transition-all duration-200">
           GO
-        </button>
-      </div>
+        </button> -->
+      <!-- </div> -->
     </section>
 
     <!-- 引擎切换弹窗 -->
@@ -107,48 +126,47 @@
       </div>
     </div>
   </main>
-  
+
+  <footer class="flex justify-center gap-12 text-sm text-[var(--text-gray)] py-3 border-t border-[var(--border__color--gray)]">
+    <span class="cursor-pointer">帮助</span>
+    <span class="cursor-pointer">打赏</span>
+    <span class="cursor-pointer">关于嗖嗖快</span>
+    <span class="cursor-pointer">合作</span>
+  </footer>
+
   <!-- 白噪音 -->
-  <div x-data="whiteNoiseData" class="fixed top-5 left-5 z-40 white-noise-container">
-    <button @click="togglePlay" 
-            :class="isPlaying ? 'btn-secondary' : 'btn-primary'"
-            class="btn btn-circle shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110">
-      <span x-text="isPlaying ? '🔊' : '🔇'" 
-            :class="isPlaying ? 'animate-pulse' : ''"
-            class="text-xs drop-shadow-sm"></span>
+  <!-- <div x-data="whiteNoiseData" class="fixed top-5 left-5 z-40 white-noise-container">
+    <button @click="togglePlay" :class="isPlaying ? 'btn-secondary' : 'btn-primary'"
+      class="btn btn-circle shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110">
+      <span x-text="isPlaying ? '🔊' : '🔇'" :class="isPlaying ? 'animate-pulse' : ''"
+        class="text-xs drop-shadow-sm"></span>
     </button>
-  </div>
+  </div> -->
 
   <!-- 仪表盘组件 -->
-  <div id="dashboard"
+  <!-- <div id="dashboard"
     class="fixed top-20 left-5 z-50 bg-base-300/90 backdrop-blur-md rounded-2xl p-4 text-base-content shadow-2xl border border-base-content/10 min-w-[196px] transition-all duration-300 ease-in-out dashboard collapsed hidden">
-    <!-- 关闭按钮 -->
     <div id="dashboard-close"
       class="absolute top-2 right-2 w-5 h-5 bg-base-content/20 rounded-full flex items-center justify-center cursor-pointer text-sm font-bold text-base-content hover:bg-base-content/30 hover:scale-110 transition-all duration-200 z-10">
       ×</div>
 
-    <!-- 圆圈状态 -->
     <div id="dashboard-circle"
       class="absolute inset-0 bg-base-300/90 rounded-full hidden items-center justify-center cursor-pointer transition-all duration-300 ease-in-out backdrop-blur-md shadow-2xl border border-base-content/10">
       <div id="circle-element" class="text-base font-black text-base-content font-mono drop-shadow-lg">--</div>
     </div>
 
-    <!-- 完整仪表盘内容 -->
     <div id="dashboard-content" class="flex flex-col gap-3">
-      <!-- 时间显示 -->
       <div class="text-center border-b border-base-content/20 pb-2">
         <div id="current-time" class="text-2xl font-black tracking-wider text-base-content drop-shadow-lg font-mono">
           --:--:--</div>
       </div>
 
-      <!-- 日期和周几 -->
       <div class="text-center flex justify-between items-center">
         <div id="current-date" class="text-xs font-normal text-base-content/80">2025年1月1日</div>
         <div id="current-weekday"
           class="text-xs font-light text-base-content/60 bg-base-content/10 px-2 py-1 rounded-lg">星期一</div>
       </div>
 
-      <!-- 天气信息 -->
       <div
         class="dashboard__weather flex items-center justify-between py-2 border-t border-base-content/10 border-b border-base-content/10">
         <div class="text-2xl mr-3">
@@ -160,7 +178,6 @@
         </div>
       </div>
 
-      <!-- 日出日落时间 -->
       <div class="dashboard__sun flex justify-between gap-2">
         <div
           class="flex items-center gap-1 flex-1 justify-center bg-base-content/5 p-2 rounded-lg border border-base-content/10">
@@ -174,7 +191,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <custom-account id="customAccount"></custom-account>
 
@@ -206,16 +223,16 @@
   <script src="scripts/dashboard.js"></script>
   <script src="scripts/index.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
+    if('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('sw.js').then(function (registration) {
-          console.log('Service Worker registered with scope:', registration.scope);
+          console.log('Service Worker registered with scope:', registration.scope)
         }, function (err) {
-          console.log('Service Worker registration failed:', err);
-        });
-      });
+          console.log('Service Worker registration failed:', err)
+        })
+      })
     }
-    </script>
+  </script>
 </body>
 
 </html>
