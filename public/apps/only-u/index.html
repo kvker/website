@@ -58,7 +58,7 @@
 </head>
 
 <body class="flex flex-col">
-  <header class="px-12 py-8 flex justify-between items-center">
+  <header class="p-4 lg:px-12 lg:py-8 flex justify-between items-center">
     <h1 class="logo" title="SO SO Quick, Only U">
       <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/icons/logo.png" alt="Only U"
         class="w-auto h-8">
@@ -71,28 +71,17 @@
     </section>
   </header>
 
-  <main x-data="mainData" class="flex-1 flex flex-col items-center justify-center max-w-[1280px] mb-[80px] mx-auto lg:mb-[120px] text-[var(--text-primary)]">
-    <!-- <section class="remind">
-      <button type="button" class="btn btn-lg btn-primary engine-switch-btn" x-text="currentEngine.title"
-        title="engineTitle" @click="clickCurrentEngine"></button>
-    </section> -->
+  <main x-data="mainData"
+    class="flex-1 flex flex-col items-center justify-center w-full max-w-[1280px] mx-auto mb-[30vh] text-[var(--text-primary)]">
     <p class="text-2xl font-bold">早上好</p>
     <p class="text-xs text-gray mt-4 mb-16">今天天气不错，适合出门走走</p>
     <section class="search-section relative">
       <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/search.svg" alt="搜索"
         class="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5">
-      <input class="w-[760px] h-12 text-sm rounded-full color-[var(--text-gray)] shadow-[0_0_10px_rgba(0,0,0,0.1)] px-[60px] focus:input-primary focus:outline-none"
+      <input autofocus
+        class="w-[90vw] max-w-[760px] h-12 text-sm rounded-full color-[var(--text-gray)] shadow-[0_0_10px_rgba(0,0,0,0.1)] px-[60px] focus:input-primary focus:outline-none"
         autofocus="autofocus" placeholder="输入搜索+空格+网站" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
         x-model.trim="value">
-      <!-- <div class="join w-full max-w-4xl">
-        <input class="input input-bordered join-item w-full text-lg focus:input-primary focus:outline-none"
-          autofocus="autofocus" placeholder="例:秋裤 淘宝" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
-          x-model.trim="value"> -->
-        <!-- <button type="button" @click="search"
-          class="btn btn-primary join-item px-8 text-lg font-bold hover:btn-secondary transition-all duration-200">
-          GO
-        </button> -->
-      <!-- </div> -->
     </section>
 
     <!-- 引擎切换弹窗 -->
@@ -127,7 +116,8 @@
     </div>
   </main>
 
-  <footer class="flex justify-center gap-12 text-sm text-[var(--text-gray)] py-3 border-t border-[var(--border__color--gray)]">
+  <footer
+    class="flex justify-center gap-12 text-sm text-[var(--text-gray)] py-3 border-t border-[var(--border__color--gray)]">
     <span class="cursor-pointer">帮助</span>
     <span class="cursor-pointer">打赏</span>
     <span class="cursor-pointer">关于嗖嗖快</span>
