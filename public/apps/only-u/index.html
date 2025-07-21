@@ -74,7 +74,7 @@
   <main x-data="mainData"
     class="flex-1 flex flex-col items-center justify-center w-full max-w-[1280px] mx-auto mb-[30vh] text-[var(--text-primary)]">
     <p class="text-2xl font-bold">早上好</p>
-    <p class="text-xs text-gray mt-4 mb-16">今天天气不错，适合出门走走</p>
+    <p class="text-xs text-gray mt-4 mb-16"><span x-text="date"></span><span class="ml-2" x-text="weekday"></span></p>
     <section class="search-section relative">
       <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/search.svg" alt="搜索"
         class="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5">

@@ -88,6 +88,8 @@ document.addEventListener('alpine:init', () => {
     currentEngine: engines[0],
     value: '',
     showEngineModal: false,
+    date: dayjs().format('MM-DD'),
+    weekday: '星期' + getWeekday(dayjs().day() - 1),
 
     init() {
       // 监听ESC键关闭弹窗
@@ -97,7 +99,6 @@ document.addEventListener('alpine:init', () => {
         }
       })
     },
-
     search(e) {
       if(e.ctrlKey) return
 
@@ -114,19 +115,15 @@ document.addEventListener('alpine:init', () => {
       }
       this.normalSearch()
     },
-
     normalSearch() {
       window.open(this.currentEngine.link.replace('%keyword%', this.value))
     },
-
     clickCurrentEngine() {
       this.showEngineModal = true
     },
-
     closeEngineModal() {
       this.showEngineModal = false
     },
-
     selectEngine(engine) {
       this.currentEngine = engine
       this.closeEngineModal()
