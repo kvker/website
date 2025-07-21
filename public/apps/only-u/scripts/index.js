@@ -83,13 +83,14 @@ const engines = [
 ]
 
 document.addEventListener('alpine:init', () => {
+  const now = dayjs()
   Alpine.data('mainData', () => ({
     engines,
     currentEngine: engines[0],
     value: '',
     showEngineModal: false,
-    date: dayjs().format('MM-DD'),
-    weekday: '星期' + getWeekday(dayjs().day() - 1),
+    date: now.format('MM-DD'),
+    weekday: '星期' + getWeekday(now.day() - 1),
 
     init() {
       // 监听ESC键关闭弹窗
