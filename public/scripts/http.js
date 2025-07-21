@@ -40,14 +40,3 @@ window.http = {
     return this.fetch(path, 'DELETE')
   }
 }
-
-window.statusMap = function(status) {
-  return {
-    init: '初始化',
-    loading: '加载中...',
-    empty: '暂无数据',
-    error: '失败',
-    success: '成功',
-    login: '需要登录'
-  }[status] || '未知状态'
-}
