@@ -1,3 +1,15 @@
+/**
+ * @typedef {Object} Engine
+ * @property {string} en
+ * @property {string} link
+ * @property {string} nick
+ * @property {string} title
+ * @property {string} cn
+ */
+
+/**
+ * @type {Engine[]}
+ */
 const engines = [
   { en: 'bing', link: 'https://www.bing.com/search?q=%keyword%', nick: 'bing', title: 'Bing', cn: 'biying' },
   { en: 'baidu', link: 'https://www.baidu.com/s?wd=%keyword%', nick: 'baidu', title: '百度', cn: 'baidu' },
@@ -82,7 +94,16 @@ const engines = [
   }
 ]
 
+/**
+ * @typedef {import('alpinejs').Alpine} Alpine
+ * @typedef {import('dayjs').Dayjs} Dayjs
+ */
+
+/** @type {Alpine} */
+const Alpine = globalThis.Alpine
+
 document.addEventListener('alpine:init', () => {
+  /** @type {Dayjs} */
   const now = dayjs()
 
   Alpine.store('common', {
@@ -118,7 +139,7 @@ document.addEventListener('alpine:init', () => {
       // 监听ESC键关闭弹窗
       document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape' && this.$store.common.showEngineModal) {
-          this.closeEngineModal()
+          this.$store.common.closeEngineModal()
         }
       })
     },
