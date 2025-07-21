@@ -68,7 +68,9 @@
         <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/more.svg" alt="更多"
           class="w-5 h-5">
       </button>
-      <p class="tools-section-remind hidden text-xs text-gray absolute bottom-[-24px] left-1/2 -translate-x-1/2 w-20 flex justify-center items-center bg-[var(--bg-gray)] text-white rounded-[4px]">快捷网站清单</p>
+      <p
+        class="tools-section-remind hidden text-xs text-gray absolute bottom-[-24px] left-1/2 -translate-x-1/2 w-20 flex justify-center items-center bg-[var(--bg-gray)] text-white rounded-[4px]">
+        快捷网站清单</p>
     </section>
   </header>
 
@@ -84,38 +86,31 @@
         autofocus="autofocus" placeholder="输入搜索+空格+网站" @keydown.enter="search" @keydown.ctrl.enter="normalSearch"
         x-model.trim="value">
     </section>
+  </main>
 
-    <!-- 引擎切换弹窗 -->
-    <div x-cloak x-show="$store.common.showEngineModal" x-transition:enter="transition ease-out duration-300"
-      x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-      x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0" class="engine-modal-overlay" @click="closeEngineModal">
-      <div x-show="$store.common.showEngineModal" x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95" class="engine-modal" @click.stop>
-        <div class="engine-modal-header">
-          <h3 class="engine-modal-title">选择搜索引擎</h3>
-          <button @click="closeEngineModal" class="engine-modal-close" aria-label="关闭">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="engine-modal-body">
-          <div class="engine-list">
-            <template x-for="engine in engines" :key="engine.en">
-              <button @click="selectEngine(engine)" class="engine-item"
-                :class="{ 'engine-item-active': engine.en === currentEngine.en }">
-                <span class="engine-name" x-text="engine.title"></span>
-                <span class="engine-nick" x-text="engine.nick"></span>
-              </button>
-            </template>
-          </div>
+  <!-- 引擎切换弹窗 -->
+  <div x-cloak x-data="$store.common" x-show="showEngineModal" x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0" class="engine-modal-overlay" @click="closeEngineModal">
+    <div x-show="showEngineModal" x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-95" class="engine-modal absolute right-10 top-20 w-[320px] h-[300px]"
+      @click.stop>
+      <div class="engine-modal-body overflow-y-auto">
+        <div class="engine-list grid grid-cols-3 gap-2">
+          <template x-for="engine in previewEngines" :key="engine.en">
+            <button @click="selectEngine(engine)" class="w-full h-[52px] flex flex-col items-center justify-center whitespace-nowrap cursor-pointers"
+              :class="{ 'engine-item-active': engine.en === currentEngine.en }">
+              <span class="mb-1" x-text="engine.nick"></span>
+              <span class="text-xs" x-text="engine.title"></span>
+            </button>
+          </template>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 
   <footer
     class="flex justify-center gap-12 text-sm text-[var(--text-gray)] py-3 border-t border-[var(--border__color-gray)]">

@@ -86,7 +86,21 @@ document.addEventListener('alpine:init', () => {
   const now = dayjs()
 
   Alpine.store('common', {
+    engines,
+    currentEngine: engines[0],
+    previewEngines: engines,
     showEngineModal: false,
+
+    selectEngine(engine) {
+      this.currentEngine = engine
+      this.closeEngineModal()
+    },
+    clickCurrentEngine() {
+      this.showEngineModal = true
+    },
+    closeEngineModal() {
+      this.showEngineModal = false
+    },
   })
 
   Alpine.data('headerData', () => ({
@@ -96,8 +110,6 @@ document.addEventListener('alpine:init', () => {
   }))
 
   Alpine.data('mainData', () => ({
-    engines,
-    currentEngine: engines[0],
     value: '',
     date: now.format('MM-DD'),
     weekday: '星期' + getWeekday(now.day() - 1),
@@ -117,27 +129,17 @@ document.addEventListener('alpine:init', () => {
       const length = splitTexts.length
       if(length > 1) {
         const maybeEngine = splitTexts[length - 1]
-        const currentEngine = this.engines.find(engine => engine.title === maybeEngine || engine.nick === maybeEngine || engine.cn === maybeEngine || engine.en === maybeEngine)
+        const currentEngine = this.$store.common.engines.find(engine => engine.title === maybeEngine || engine.nick === maybeEngine || engine.cn === maybeEngine || engine.en === maybeEngine)
         if(currentEngine) {
-          this.currentEngine = currentEngine
+          this.$store.common.currentEngine = currentEngine
           splitTexts.pop()
-          return window.open(this.currentEngine.link.replace('%keyword%', String(splitTexts).replace(/,/g, ' ')))
+          return window.open(this.$store.common.currentEngine.link.replace('%keyword%', String(splitTexts).replace(/,/g, ' ')))
         }
       }
       this.normalSearch()
     },
     normalSearch() {
-      window.open(this.currentEngine.link.replace('%keyword%', this.value))
+      window.open(this.$store.common.currentEngine.link.replace('%keyword%', this.value))
     },
-    clickCurrentEngine() {
-      this.$store.common.showEngineModal = true
-    },
-    closeEngineModal() {
-      this.$store.common.showEngineModal = false
-    },
-    selectEngine(engine) {
-      this.currentEngine = engine
-      this.closeEngineModal()
-    }
   }))
 })
