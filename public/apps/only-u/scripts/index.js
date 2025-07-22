@@ -99,10 +99,9 @@ const engines = [
  * @typedef {import('dayjs').Dayjs} Dayjs
  */
 
-/** @type {Alpine} */
-const Alpine = globalThis.Alpine
-
 document.addEventListener('alpine:init', () => {
+  /** @type {Alpine} */
+  const Alpine = globalThis.Alpine
   /** @type {Dayjs} */
   const now = dayjs()
 
