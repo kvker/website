@@ -1,5 +1,8 @@
+// @ts-check
+
 import express from 'express'
-import { getArticles, getArticleCount } from '../services/blogs.js'
+import { getArticles, getArticleCount, postArticles } from '../services/blogs.js'
+import { onLlmGenerateBlog, onLlmGenerateBlogInfo } from '../services/llm.js'
 
 const router = express.Router()
 
@@ -62,6 +65,64 @@ router.get('/:year/:month/:day/:slug', async function (req, res, next) {
     })
   } catch(err) {
     next(err)
+  }
+})
+
+// 处理随笔转博客
+router.post('/generate', async (req, res) => {
+  const { content } = req.body
+  try {
+    // 直接调用 AI 处理
+    const llmContent = await onLlmGenerateBlog({ text: content })
+    let result = await onLlmGenerateBlogInfo({ text: llmContent })
+    result.content = llmContent
+    result = await postArticles([result])
+    res.json({
+      data: result
+    })
+  } catch(error) {
+    console.error('generate blog error: ', error.message)
+    res.status(503).json({ error })
+  }
+})
+
+// 处理博客加工
+router.post('/generate-with-content', async function (req, res, next) {
+  const { content } = req.body
+  if(!content) {
+    return res.json({
+      error: '内容不能为空'
+    })
+  }
+
+  try {
+    // 直接调用 AI 处理
+    let result = await onLlmGenerateBlogInfo({ text: content })
+    result.content = content
+    result = await postArticles([result])
+    res.json({
+      data: result
+    })
+  } catch(error) {
+    console.error('generate blog error: ', error.message)
+    res.status(503).json({
+      error
+    })
+  }
+})
+
+// 处理博客信息
+router.post('/generate-info', async (req, res) => {
+  const { content } = req.body
+  try {
+    let result = await onLlmGenerateBlogInfo({ text: content })
+    result.content = content
+    res.json({
+      data: result
+    })
+  } catch(error) {
+    console.error('generate blog info error: ', error.message)
+    res.status(503).json({ error })
   }
 })
 

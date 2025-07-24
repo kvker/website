@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url'
 import indexRouter from './routes/index.js'
 import usersRouter from './routes/users.js'
 import articlesRouter from './routes/articles.js'
-import adminRouter from './routes/admin.js'
 import apiRouter from './routes/api.js'
 
 const app = express()
@@ -41,7 +40,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
-app.use('/admin', adminRouter)
 app.use('/api', apiRouter)
 
 // catch 404 and forward to error handler

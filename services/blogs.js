@@ -42,3 +42,35 @@ export async function getArticleCount() {
   const count = await defaultMongoDB.client.db("website").collection("blogs").countDocuments()
   return count
 }
+
+export async function postArticles(articleList = []) {
+  const now = new Date()
+  const date = now.toISOString().split('T')[0]
+
+  const blogs = articleList.map(i => {
+    const slug = date.replace(/-/g, '/') + '/' + i.title.replace(/\.md$/, '').replace(/\s/g, '-')
+    return {
+      slug,
+      date,
+      createdAt: now,
+      updatedAt: now,
+      content: `---
+title: '${i.title}'
+date: '${date}'
+tags:
+${i.tags ? i.tags.map(tag => `  - '${tag}'`).join('\n') : ''}
+description: '${i.description || ''}'
+summary: '${i.summary || ''}'
+author: '污斑兔'
+cover: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+readTime: '10 min'
+category: '${i.category || '技术教程'}'
+---
+
+${i.content}`
+    }
+  })
+  const result = await websiteDB.collection("blogs")
+    .insertMany(blogs)
+  return result
+}
