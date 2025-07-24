@@ -9,8 +9,16 @@ import usersRouter from './routes/users.js'
 import articlesRouter from './routes/articles.js'
 import adminRouter from './routes/admin.js'
 import apiRouter from './routes/api.js'
+import { ParseServer } from 'parse-server'
 
 const app = express()
+const api = new ParseServer({
+  databaseURI: process.env.MONGODB_URL,
+  appId: process.env.PARSE_APP_ID,
+  masterKey: process.env.PARSE_MASTER_KEY,
+  javascriptKey: process.env.PARSE_JAVASCRIPT_KEY,
+})
+await api.start()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -27,7 +35,6 @@ app.use((req, res, next) => {
   }
 })
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -43,6 +50,7 @@ app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
 app.use('/admin', adminRouter)
 app.use('/api', apiRouter)
+app.use('/parse', api.app)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
