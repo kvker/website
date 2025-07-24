@@ -1,7 +1,10 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export class MongoDB {
-  constructor(url = "mongodb://root:bcfn98pk@website-mongodb.ns-gtjec9cb.svc:27017", options = {}) {
+  constructor(url = process.env.MONGODB_URL, options = {}) {
     // Create a MongoClient with a MongoClientOptions object to set the Stable API version
     this.client = new MongoClient(url, {
       serverApi: {
