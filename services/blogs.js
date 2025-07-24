@@ -2,6 +2,7 @@ import matter from 'gray-matter'
 import { marked } from 'marked'
 import { defaultMongoDB } from '../services/mongodb.js'
 
+const websiteDB = defaultMongoDB.client.db("website")
 /**
  * 获取所有博客文章
  * @returns {Promise<Array>} 文章列表
@@ -11,7 +12,7 @@ export async function getArticles({
   pageSize = 10,
   mongoQuery = {},
 }) {
-  const blogs = await defaultMongoDB.client.db("website").collection("blogs")
+  const blogs = await websiteDB.collection("blogs")
     .find(mongoQuery)
     .sort({ date: -1 })
     .skip((page - 1) * pageSize)
