@@ -10,6 +10,7 @@ import articlesRouter from './routes/articles.js'
 import adminRouter from './routes/admin.js'
 import apiRouter from './routes/api.js'
 import { ParseServer } from 'parse-server'
+import Parse from 'parse/node.js'
 
 const app = express()
 const api = new ParseServer({
@@ -19,6 +20,9 @@ const api = new ParseServer({
   javascriptKey: process.env.PARSE_JAVASCRIPT_KEY,
 })
 await api.start()
+
+Parse.initialize(process.env.PARSE_APP_ID, process.env.PARSE_JAVASCRIPT_KEY, process.env.PARSE_MASTER_KEY)
+Parse.serverURL = process.env.PARSE_SERVER_URL
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

@@ -1,6 +1,7 @@
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { defaultMongoDB } from '../services/mongodb.js'
+import Parse from 'parse/node.js'
 
 /**
  * 获取所有博客文章
@@ -11,12 +12,18 @@ export async function getArticles({
   pageSize = 10,
   mongoQuery = {},
 }) {
-  const blogs = await defaultMongoDB.client.db("website").collection("blogs")
-    .find(mongoQuery)
-    .sort({ date: -1 })
-    .skip((page - 1) * pageSize)
-    .limit(pageSize)
-    .toArray()
+  const query = new Parse.Query('blogs')
+  query.limit(pageSize)
+  query.skip((page - 1) * pageSize)
+  query.ascending('date')
+  const blogs = await query.find()
+  console.log(blogs)
+  // const blogs = await defaultMongoDB.client.db("website").collection("blogs")
+  //   .find(mongoQuery)
+  //   .sort({ date: -1 })
+  //   .skip((page - 1) * pageSize)
+  //   .limit(pageSize)
+  //   .toArray()
   const articles = blogs.map(blog => {
     const { data, content: markdown } = matter(blog.content)
     const html = marked(markdown)
