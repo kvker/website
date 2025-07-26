@@ -60,13 +60,11 @@
 <body class="flex flex-col">
   <header x-data="headerData" class="p-4 lg:px-12 lg:py-8 flex justify-between items-center">
     <h1 class="logo" title="SO SO Quick, Only U">
-      <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/icons/logo.png" alt="Only U"
-        class="w-auto h-8">
+      <img src="https://website-ilovecats.oss-cn-hangzhou.aliyuncs.com/apps/sosoquick/icons/logo.png?x-oss-process=image/resize,h_64" alt="Only U" class="w-auto h-8">
     </h1>
     <section class="tools-section relative">
       <button class="btn btn-ghost btn-circle" @click="toggleEngineModal">
-        <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/more.svg" alt="更多"
-          class="w-5 h-5">
+        <img src="https://website-ilovecats.oss-cn-hangzhou.aliyuncs.com/apps/sosoquick/svgs/more.svg" alt="更多" class="w-5 h-5">
       </button>
       <p
         class="tools-section-remind hidden text-xs text-gray absolute bottom-[-24px] left-1/2 -translate-x-1/2 w-20 flex justify-center items-center bg-[var(--bg-gray)] text-white rounded-[4px]">
@@ -79,7 +77,7 @@
     <p class="text-2xl font-bold">早上好</p>
     <p class="text-xs text-gray mt-4 mb-16"><span x-text="date"></span><span class="ml-2" x-text="weekday"></span></p>
     <section class="search-section relative">
-      <img src="https://objectstorageapi.gzg.sealos.run/gtjec9cb-website/apps/sosoquick/svgs/search.svg" alt="搜索"
+      <img src="https://website-ilovecats.oss-cn-hangzhou.aliyuncs.com/apps/sosoquick/svgs/search.svg" alt="搜索"
         class="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5">
       <input autofocus
         class="w-[90vw] max-w-[760px] h-12 text-sm rounded-full color-[var(--text-gray)] shadow-[0_0_10px_rgba(0,0,0,0.1)] px-[60px] focus:input-primary focus:outline-none"
@@ -101,7 +99,8 @@
       <div class="engine-modal-body overflow-y-auto">
         <div class="engine-list grid grid-cols-3 gap-2">
           <template x-for="engine in previewEngines" :key="engine.en">
-            <button @click="selectEngine(engine)" class="w-full h-[52px] flex flex-col items-center justify-center whitespace-nowrap cursor-pointers"
+            <button @click="selectEngine(engine)"
+              class="w-full h-[52px] flex flex-col items-center justify-center whitespace-nowrap cursor-pointers"
               :class="{ 'engine-item-active': engine.en === currentEngine.en }">
               <span class="mb-1" x-text="engine.nick"></span>
               <span class="text-xs" x-text="engine.title"></span>
