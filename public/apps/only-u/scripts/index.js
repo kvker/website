@@ -10,17 +10,26 @@ document.addEventListener('alpine:init', () => {
   const now = dayjs()
 
   Alpine.store('common', {
-    engines,
-    currentEngine: engines[0],
-    previewEngines: engines,
+    engines: [],
+    currentEngine: null,
+    previewEngines: [],
     showEngineModal: false,
+
+    async init() {
+      const { data: engines, error } = await fetch('/api/apps/only-u/engines').then(res => res.json())
+      if(error) {
+        return alert(error)
+      }
+      if(engines) {
+        this.engines = engines
+        this.currentEngine = engines[0]
+        this.previewEngines = engines
+      }
+    },
 
     selectEngine(engine) {
       this.currentEngine = engine
       this.closeEngineModal()
-    },
-    clickCurrentEngine() {
-      this.showEngineModal = true
     },
     closeEngineModal() {
       this.showEngineModal = false

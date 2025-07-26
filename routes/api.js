@@ -1,5 +1,6 @@
 import express from 'express'
 import sun from './apps/sun.js'
+import onlyU from './apps/only-u/index.js'
 
 const router = express.Router()
 
@@ -61,5 +62,6 @@ router.post('/apps/hotnews', async (req, res) => {
 })
 
 router.use('/apps/sun', sun)
+router.use('/apps/only-u', onlyU)
 
 export default router 
